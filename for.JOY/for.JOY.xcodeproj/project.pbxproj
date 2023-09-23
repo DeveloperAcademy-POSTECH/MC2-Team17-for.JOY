@@ -20,6 +20,11 @@
 		0E0F31562ABF234100A95794 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F31552ABF234100A95794 /* ImagePickerView.swift */; };
 		0E0F31582ABF235500A95794 /* ImageCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F31572ABF235500A95794 /* ImageCropView.swift */; };
 		0E0F315A2ABF236900A95794 /* PhotoSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F31592ABF236900A95794 /* PhotoSelectButton.swift */; };
+		0E0F31692ABF38EE00A95794 /* VoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F31682ABF38EE00A95794 /* VoiceViewModel.swift */; };
+		0E0F316B2ABF390500A95794 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F316A2ABF390500A95794 /* TimerView.swift */; };
+		0E0F316E2ABF3D9B00A95794 /* SoundVisualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F316D2ABF3D9B00A95794 /* SoundVisualizer.swift */; };
+		0E0F31702ABF3DB700A95794 /* MicrophoneMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F316F2ABF3DB700A95794 /* MicrophoneMonitor.swift */; };
+		0E0F31722ABF3DCE00A95794 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F31712ABF3DCE00A95794 /* BarView.swift */; };
 		0E4B89D12ABEB48200F358CD /* for_JOYApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4B89D02ABEB48200F358CD /* for_JOYApp.swift */; };
 		0E4B89D32ABEB48200F358CD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4B89D22ABEB48200F358CD /* ContentView.swift */; };
 		0E4B89D52ABEB48400F358CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E4B89D42ABEB48400F358CD /* Assets.xcassets */; };
@@ -51,6 +56,11 @@
 		0E0F31552ABF234100A95794 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		0E0F31572ABF235500A95794 /* ImageCropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropView.swift; sourceTree = "<group>"; };
 		0E0F31592ABF236900A95794 /* PhotoSelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectButton.swift; sourceTree = "<group>"; };
+		0E0F31682ABF38EE00A95794 /* VoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceViewModel.swift; sourceTree = "<group>"; };
+		0E0F316A2ABF390500A95794 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		0E0F316D2ABF3D9B00A95794 /* SoundVisualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundVisualizer.swift; sourceTree = "<group>"; };
+		0E0F316F2ABF3DB700A95794 /* MicrophoneMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneMonitor.swift; sourceTree = "<group>"; };
+		0E0F31712ABF3DCE00A95794 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 		0E4B89CD2ABEB48200F358CD /* for.JOY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = for.JOY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E4B89D02ABEB48200F358CD /* for_JOYApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = for_JOYApp.swift; sourceTree = "<group>"; };
 		0E4B89D22ABEB48200F358CD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -83,12 +93,12 @@
 		0E0F31372ABEFB6B00A95794 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0E0F31672ABF38BB00A95794 /* Voice */,
 				0E0F31542ABF232A00A95794 /* Album */,
 				0E0F31532ABF232300A95794 /* Camera */,
 				0E0F312B2ABEF90D00A95794 /* MainView.swift */,
 				0E0F312F2ABEFAF100A95794 /* GalleryView.swift */,
 				0E0F31312ABEFB1C00A95794 /* CarouselView.swift */,
-				0E0F31332ABEFB2500A95794 /* VoiceView.swift */,
 				0E0F31352ABEFB2C00A95794 /* InfoView.swift */,
 			);
 			path = Views;
@@ -110,6 +120,27 @@
 				0E0F31592ABF236900A95794 /* PhotoSelectButton.swift */,
 			);
 			path = Album;
+			sourceTree = "<group>";
+		};
+		0E0F31672ABF38BB00A95794 /* Voice */ = {
+			isa = PBXGroup;
+			children = (
+				0E0F316C2ABF3D8B00A95794 /* SoundVisualizer */,
+				0E0F31332ABEFB2500A95794 /* VoiceView.swift */,
+				0E0F31682ABF38EE00A95794 /* VoiceViewModel.swift */,
+				0E0F316A2ABF390500A95794 /* TimerView.swift */,
+			);
+			path = Voice;
+			sourceTree = "<group>";
+		};
+		0E0F316C2ABF3D8B00A95794 /* SoundVisualizer */ = {
+			isa = PBXGroup;
+			children = (
+				0E0F316D2ABF3D9B00A95794 /* SoundVisualizer.swift */,
+				0E0F316F2ABF3DB700A95794 /* MicrophoneMonitor.swift */,
+				0E0F31712ABF3DCE00A95794 /* BarView.swift */,
+			);
+			path = SoundVisualizer;
 			sourceTree = "<group>";
 		};
 		0E4B89C42ABEB48100F358CD = {
@@ -296,7 +327,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E0F31722ABF3DCE00A95794 /* BarView.swift in Sources */,
+				0E0F316B2ABF390500A95794 /* TimerView.swift in Sources */,
 				0E0F315A2ABF236900A95794 /* PhotoSelectButton.swift in Sources */,
+				0E0F31692ABF38EE00A95794 /* VoiceViewModel.swift in Sources */,
 				5B6A3F9D2ABEB81D0040C348 /* Font+.swift in Sources */,
 				0E0F312C2ABEF90D00A95794 /* MainView.swift in Sources */,
 				0E0F31322ABEFB1C00A95794 /* CarouselView.swift in Sources */,
@@ -309,6 +343,7 @@
 				0E4B89D32ABEB48200F358CD /* ContentView.swift in Sources */,
 				0E0F314E2ABF22F000A95794 /* UIScreen+.swift in Sources */,
 				0E4B89D12ABEB48200F358CD /* for_JOYApp.swift in Sources */,
+				0E0F31702ABF3DB700A95794 /* MicrophoneMonitor.swift in Sources */,
 				5B6A3FB62ABEFE150040C348 /* Memory.swift in Sources */,
 				5B6A3FAC2ABEE6D60040C348 /* RealmManager.swift in Sources */,
 				0E0F31302ABEFAF100A95794 /* GalleryView.swift in Sources */,
@@ -317,6 +352,7 @@
 				0E0F31522ABF231400A95794 /* Texts.swift in Sources */,
 				0E0F31342ABEFB2500A95794 /* VoiceView.swift in Sources */,
 				0E0F31562ABF234100A95794 /* ImagePickerView.swift in Sources */,
+				0E0F316E2ABF3D9B00A95794 /* SoundVisualizer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
