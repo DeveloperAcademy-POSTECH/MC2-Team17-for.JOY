@@ -10,6 +10,7 @@ import Foundation
 enum Images {
     static let plus = "plus"
     static let check = "checkmark"
+    static let back = "chevron.left"
     static let tag = "tag.fill"
     static let sort = "chevron.up.chevron.down"
     static let emptyMemory = "EmptyMemory"
