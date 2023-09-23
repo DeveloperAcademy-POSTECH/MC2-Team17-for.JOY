@@ -17,6 +17,9 @@
 		5B6A3F9D2ABEB81D0040C348 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A3F9C2ABEB81D0040C348 /* Font+.swift */; };
 		5B6A3F9F2ABEB85E0040C348 /* Colors+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A3F9E2ABEB85E0040C348 /* Colors+.swift */; };
 		5B6A3FA12ABEB87A0040C348 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A3FA02ABEB87A0040C348 /* Date+.swift */; };
+		5B6A3FA72ABEBAB00040C348 /* SaveComplete2.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B6A3FA42ABEBAB00040C348 /* SaveComplete2.json */; };
+		5B6A3FA82ABEBAB00040C348 /* RecComplete2.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B6A3FA52ABEBAB00040C348 /* RecComplete2.json */; };
+		5B6A3FA92ABEBAB00040C348 /* panpare.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B6A3FA62ABEBAB00040C348 /* panpare.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		5B6A3F9C2ABEB81D0040C348 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		5B6A3F9E2ABEB85E0040C348 /* Colors+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors+.swift"; sourceTree = "<group>"; };
 		5B6A3FA02ABEB87A0040C348 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		5B6A3FA42ABEBAB00040C348 /* SaveComplete2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SaveComplete2.json; sourceTree = "<group>"; };
+		5B6A3FA52ABEBAB00040C348 /* RecComplete2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RecComplete2.json; sourceTree = "<group>"; };
+		5B6A3FA62ABEBAB00040C348 /* panpare.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = panpare.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +108,8 @@
 			children = (
 				0E4B89D02ABEB48200F358CD /* for_JOYApp.swift */,
 				0E4B89D22ABEB48200F358CD /* ContentView.swift */,
-				0E4B89D42ABEB48400F358CD /* Assets.xcassets */,
-				5B6A3FA22ABEB9330040C348 /* New Group */,
+				5B6A3FAA2ABEBACF0040C348 /* Resource */,
+				5B6A3FA22ABEB9330040C348 /* Extensions */,
 				0E4B89D62ABEB48400F358CD /* Preview Content */,
 			);
 			path = for.JOY;
@@ -134,14 +140,34 @@
 			path = for.JOYUITests;
 			sourceTree = "<group>";
 		};
-		5B6A3FA22ABEB9330040C348 /* New Group */ = {
+		5B6A3FA22ABEB9330040C348 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				5B6A3F9C2ABEB81D0040C348 /* Font+.swift */,
 				5B6A3FA02ABEB87A0040C348 /* Date+.swift */,
 				5B6A3F9E2ABEB85E0040C348 /* Colors+.swift */,
 			);
-			path = "New Group";
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5B6A3FA32ABEBAB00040C348 /* LottieFiles */ = {
+			isa = PBXGroup;
+			children = (
+				5B6A3FA42ABEBAB00040C348 /* SaveComplete2.json */,
+				5B6A3FA52ABEBAB00040C348 /* RecComplete2.json */,
+				5B6A3FA62ABEBAB00040C348 /* panpare.json */,
+			);
+			name = LottieFiles;
+			path = for.JOY/Resource/LottieFiles;
+			sourceTree = SOURCE_ROOT;
+		};
+		5B6A3FAA2ABEBACF0040C348 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				0E4B89D42ABEB48400F358CD /* Assets.xcassets */,
+				5B6A3FA32ABEBAB00040C348 /* LottieFiles */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,7 +274,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B6A3FA72ABEBAB00040C348 /* SaveComplete2.json in Resources */,
 				0E4B89D82ABEB48400F358CD /* Preview Assets.xcassets in Resources */,
+				5B6A3FA82ABEBAB00040C348 /* RecComplete2.json in Resources */,
+				5B6A3FA92ABEBAB00040C348 /* panpare.json in Resources */,
 				0E4B89D52ABEB48400F358CD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,7 +396,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -424,7 +453,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -442,7 +471,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"for.JOY/Preview Content\"";
-				DEVELOPMENT_TEAM = HQS8MXQ7B5;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -471,7 +500,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"for.JOY/Preview Content\"";
-				DEVELOPMENT_TEAM = HQS8MXQ7B5;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
