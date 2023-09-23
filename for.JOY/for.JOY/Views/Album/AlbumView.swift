@@ -10,6 +10,8 @@ import SwiftUI
 struct AlbumView: View {
     var body: some View {
         Text("Album View")
+
+        PhotoSelectButton()
     }
 }
 
