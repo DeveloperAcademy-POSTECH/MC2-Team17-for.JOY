@@ -12,6 +12,6 @@ assignees: ''
 ## ✨ Description
 
 ## ✓ Todo
-[ ] 
+- [ ]
 
 ## 🗒️ Note (optional)
