@@ -11,7 +11,9 @@ import SwiftUI
 struct ForJoy: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+
+            MainView()
         }
     }
 }
