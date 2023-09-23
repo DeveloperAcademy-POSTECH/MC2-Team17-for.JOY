@@ -20,9 +20,7 @@ struct AlbumView: View {
             ZStack {
                 Color.joyBlack
                     .ignoresSafeArea()
-
                 albumMainView()
-                
                 VStack {
                     Spacer()
                     PhotoSelectButton()
@@ -36,15 +34,6 @@ struct AlbumView: View {
 }
 
 extension AlbumView {
-    @ViewBuilder
-    func headerView() -> some View {
-        HStack {
-            tagButton()
-            Spacer()
-            sortButton()
-        }
-        .padding(.horizontal)
-    }
     @ViewBuilder
     func tagButton() -> some View {
         Menu {
