@@ -29,7 +29,7 @@ struct Test: View {
             }
             Spacer()
             Button {
-                realmManager.insertMemory(Memory(value: ["title": "test", "year": 2023, "date": Date(), "tag": "없음", "img": "EmptyMemory", "voice": "none"] as [String : Any]))
+                realmManager.insertMemory(Memory(value: ["title": "test", "year": 2022, "date": Date(), "tag": "있음", "img": "EmptyMemory", "voice": "none"] as [String : Any]))
             } label: {
                 Text("Add Memory")
                     .foregroundColor(.white)
