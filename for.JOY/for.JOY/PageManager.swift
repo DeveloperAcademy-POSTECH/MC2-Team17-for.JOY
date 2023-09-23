@@ -11,6 +11,7 @@ enum PageState {
     case album
     case voice
     case info
+    case addDone
     case gallery
     case carousel
 }
