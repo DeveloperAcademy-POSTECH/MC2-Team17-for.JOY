@@ -18,6 +18,7 @@ class RealmManager: ObservableObject {
     init() {
         openRealm()
         selectAllMemories()
+        selectYealryMemories()
     }
     func openRealm() {
         do {
@@ -28,43 +29,45 @@ class RealmManager: ObservableObject {
             print(RealmError.realmInitializationFailed.errorMessage)
         }
     }
-    func selectAllMemories(_ tag: String? = nil) {
+    func selectAllMemories() {
         if let localRealm = localRealm {
             var allMemories: [Memory] = []
-            if tag == nil {
-                allMemories = Array(localRealm.objects(Memory.self).sorted(byKeyPath: "date", ascending: false))
-            } else {
-                allMemories = Array(localRealm.objects(Memory.self).filter(NSPredicate(format: "tag == %@", tag!)).sorted(byKeyPath: "date", ascending: false))
-            }
+            allMemories = Array(localRealm.objects(Memory.self).sorted(byKeyPath: "date", ascending: false))
             memories = []
             allMemories.forEach { memory in
                 memories.append(memory)
-                yearlyMemories[memory.year, default: []].append(memory)
             }
         }
         getDistinctYears()
         getDistinctTags()
     }
-    func getDistinctYears() {
-        distinctYears = Array(Set(memories.compactMap { $0.year }))
+    func getDistinctYears(_ isNewest: Bool = true) {
+        if isNewest {
+            distinctYears = Array(Set(memories.compactMap { $0.year }))
+                .sorted(by: >)
+        } else {
+            distinctYears = Array(Set(memories.compactMap { $0.year }))
+                .sorted(by: <)
+        }
     }
     func getDistinctTags() {
         distinctTags = Array(Set(memories.compactMap { $0.tag }))
     }
-//    func selectYealryMemories(_ tag: String?) {
-//        if let localRealm = localRealm {
-//            var yearlyfilteredMemories: [Memory] = []
-//            if tag != nil {
-//                yearlyfilteredMemories = memories.filter { $0.tag == tag}
-//            } else {
-//                yearlyfilteredMemories = memories
-//            }
-//
-//            yearlyfilteredMemories.forEach { memory in
-//                yearlyMemories[memory.year, default: []].append(memory)
-//            }
-//        }
-//    }
+    func selectYealryMemories(_ tag: String? = nil) {
+        if let localRealm = localRealm {
+            var yearlyfilteredMemories: [Memory] = []
+            if tag != nil {
+                yearlyfilteredMemories = Array(localRealm.objects(Memory.self).filter(NSPredicate(format: "tag == %@", tag!)).sorted(byKeyPath: "date", ascending: false))
+            } else {
+                yearlyfilteredMemories = memories
+            }
+            
+            yearlyMemories = [:]
+            yearlyfilteredMemories.forEach { memory in
+                yearlyMemories[memory.year, default: []].append(memory)
+            }
+        }
+    }
     func insertMemory(_ memory: Memory) {
         if let localRealm = localRealm {
             do {
