@@ -26,6 +26,8 @@ struct MainView: View {
                 VoiceView()
             case .info:
                 InfoView()
+            case .addDone:
+                AddDoneView()
             }
         }
     }
