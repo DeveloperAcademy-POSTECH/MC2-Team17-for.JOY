@@ -27,6 +27,8 @@
 		5B6A3FAC2ABEE6D60040C348 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A3FAB2ABEE6D60040C348 /* RealmManager.swift */; };
 		5B6A3FAF2ABEE7A70040C348 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5B6A3FAE2ABEE7A70040C348 /* Realm */; };
 		5B6A3FB12ABEE7A70040C348 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5B6A3FB02ABEE7A70040C348 /* RealmSwift */; };
+		5B6A3FB62ABEFE150040C348 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A3FB52ABEFE150040C348 /* Memory.swift */; };
+		5B6A3FBA2ABF03B20040C348 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A3FB92ABF03B20040C348 /* test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		5B6A3FA52ABEBAB00040C348 /* RecComplete2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RecComplete2.json; sourceTree = "<group>"; };
 		5B6A3FA62ABEBAB00040C348 /* panpare.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = panpare.json; sourceTree = "<group>"; };
 		5B6A3FAB2ABEE6D60040C348 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		5B6A3FB52ABEFE150040C348 /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
+		5B6A3FB92ABF03B20040C348 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +102,7 @@
 			children = (
 				0E4B89D02ABEB48200F358CD /* for_JOYApp.swift */,
 				0E4B89D22ABEB48200F358CD /* ContentView.swift */,
-				5B6A3FAB2ABEE6D60040C348 /* RealmManager.swift */,
+				5B6A3FB82ABEFE7A0040C348 /* Data */,
 				5B6A3FAA2ABEBACF0040C348 /* Resource */,
 				5B6A3FA22ABEB9330040C348 /* Extensions */,
 				0E4B89D62ABEB48400F358CD /* Preview Content */,
@@ -144,6 +148,17 @@
 				5B6A3FA32ABEBAB00040C348 /* LottieFiles */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		5B6A3FB82ABEFE7A0040C348 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5B6A3FAB2ABEE6D60040C348 /* RealmManager.swift */,
+				5B6A3FB92ABF03B20040C348 /* test.swift */,
+				5B6A3FB52ABEFE150040C348 /* Memory.swift */,
+			);
+			name = Data;
+			path = Resource/Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +272,10 @@
 				0E0F312A2ABEF6F400A95794 /* PageManager.swift in Sources */,
 				0E4B89D32ABEB48200F358CD /* ContentView.swift in Sources */,
 				0E4B89D12ABEB48200F358CD /* for_JOYApp.swift in Sources */,
+				5B6A3FB62ABEFE150040C348 /* Memory.swift in Sources */,
 				5B6A3FAC2ABEE6D60040C348 /* RealmManager.swift in Sources */,
 				0E0F31302ABEFAF100A95794 /* GalleryView.swift in Sources */,
+				5B6A3FBA2ABF03B20040C348 /* test.swift in Sources */,
 				0E0F31342ABEFB2500A95794 /* VoiceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
