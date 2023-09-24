@@ -30,16 +30,14 @@ class VoiceViewModel: NSObject, ObservableObject {
             print("Cannot setup the Recording")
         }
 
-//        guard let path = FileManager.default.containerURL(
-//            forSecurityApplicationGroupIdentifier: "group.com.papajoy.forjoy")
-//        else {
-//            print("Failed to access app group identifier")
-//            return
-//        }
-//
-//        recording = path.appendingPathComponent("\(Date().toString(dateFormat: "YY-MM-dd-HH-mm-ss")).m4a")
+        guard let path = FileManager.default.containerURL(
+            forSecurityApplicationGroupIdentifier: "group.newyork.forJoy")
+        else {
+            print("Failed to access app group identifier")
+            return
+        }
 
-        recording = URL(string: "\(Date().toString(dateFormat: "YY-MM-dd-HH-mm-ss")).m4a")
+        recording = path.appendingPathComponent("\(Date().toString(dateFormat: "YY-MM-dd-HH-mm-ss")).m4a")
 
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
