@@ -27,6 +27,10 @@ struct AlbumView: View {
                     PhotoSelectButton(dataManager: dataManager)
                 }
             }
+            .onAppear {
+                realmManager.selectAllMemories()
+                realmManager.selectYealryMemories()
+            }
             .edgesIgnoringSafeArea([.bottom])
             .navigationBarItems(leading: tagButton())
             .navigationBarItems(trailing: sortButton())

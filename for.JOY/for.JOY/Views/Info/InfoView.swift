@@ -9,6 +9,7 @@ import SwiftUI
 import Photos
 
 struct InfoView: View {
+    @StateObject var realmManger = RealmManager.shared
     @ObservedObject var dataManager: DataManager
     @State private var title: String = ""
     @State private var date = Date()
@@ -183,8 +184,10 @@ extension InfoView {
 extension InfoView {
     func doneAction() {
         let year = Int(date.toString(dateFormat: "yyyy"))!
+        let image = dataManager.imageData!.jpegData(compressionQuality: 0.8)!.base64EncodedString()
+        let voice = dataManager.recording!.absoluteString
 
-        //TODO: ADD Data
+        realmManger.insertMemory(Memory(value: ["title": title, "year": year, "date": date, "tag": tag ?? "없음", "img": image, "voice": voice]))
         saveImage()
 
         dataManager.info = Info(
