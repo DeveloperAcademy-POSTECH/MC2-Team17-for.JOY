@@ -47,6 +47,7 @@ struct VoiceView: View {
                         .opacity(voiceViewModel.isRecording && !voiceViewModel.isEndRecording ? 1 : 0)
                         .offset(y: voiceViewModel.isRecording && !voiceViewModel.isEndRecording ? 0 : -217 * padding)
                         .animation(.easeInOut(duration: 0.5))
+                        .padding(.top, 10)
                         .padding(.bottom, 20 * padding)
 
                     TimerView(viewModel: voiceViewModel, recording: $recording)

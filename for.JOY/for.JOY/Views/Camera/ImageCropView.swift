@@ -41,21 +41,9 @@ struct ImageCropView: View {
                             Spacer(minLength: 0)
 
                             Button("선택") {
-                                if #available(iOS 16.0, *) {
-                                    let renderer = ImageRenderer(content: imageView(true))
-                                    renderer.proposedSize = .init(CGSize(width: 346, height: 459))
-
-                                    if let image = renderer.uiImage {
-                                        onCrop(image, true)
-                                    } else {
-                                        onCrop(nil, false)
-                                    }
-                                } else {
-                                    let image = imageView(true).offset(y: padding < 1 ? -10 : -24)
-                                    let img = image.snapshot()
-                                    onCrop(img, true)
-                                }
-
+                                let image = imageView(true).offset(y: padding < 1 ? -10 : -24)
+                                let img = image.snapshot()
+                                onCrop(img, true)
                                 showCropView = false
                             }
                         }
@@ -177,23 +165,6 @@ struct ImageCropView_Previews: PreviewProvider {
     static var previews: some View {
         ImageCropView(showCropView: .constant(true)) { _, _ in
 
-        }
-    }
-}
-
-extension View {
-    func snapshot() -> UIImage {
-        let controller = UIHostingController(rootView: self)
-        let view = controller.view
-
-        let targetSize = CGSize(width: 346, height: 459)
-        view?.bounds = CGRect(origin: .zero, size: targetSize)
-        view?.backgroundColor = .clear
-
-        let renderer = UIGraphicsImageRenderer(size: targetSize)
-
-        return renderer.image { _ in
-            view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
         }
     }
 }
