@@ -37,7 +37,6 @@
 		0E3C0E6B2ABF7B5E008DF2BD /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3C0E6A2ABF7B5E008DF2BD /* Info.swift */; };
 		0E3C0E732ABFEE15008DF2BD /* PermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3C0E722ABFEE15008DF2BD /* PermissionHandler.swift */; };
 		0E4B89D12ABEB48200F358CD /* for_JOYApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4B89D02ABEB48200F358CD /* for_JOYApp.swift */; };
-		0E4B89D32ABEB48200F358CD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4B89D22ABEB48200F358CD /* ContentView.swift */; };
 		0E4B89D52ABEB48400F358CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E4B89D42ABEB48400F358CD /* Assets.xcassets */; };
 		0E4B89D82ABEB48400F358CD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E4B89D72ABEB48400F358CD /* Preview Assets.xcassets */; };
 		5B62903F2AC0171C0022E6D6 /* OffsetReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62903E2AC0171C0022E6D6 /* OffsetReader.swift */; };
@@ -53,7 +52,6 @@
 		5B6A3FAF2ABEE7A70040C348 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5B6A3FAE2ABEE7A70040C348 /* Realm */; };
 		5B6A3FB12ABEE7A70040C348 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5B6A3FB02ABEE7A70040C348 /* RealmSwift */; };
 		5B6A3FB62ABEFE150040C348 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A3FB52ABEFE150040C348 /* Memory.swift */; };
-		5B6A3FBA2ABF03B20040C348 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A3FB92ABF03B20040C348 /* test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,7 +85,6 @@
 		0E3C0E722ABFEE15008DF2BD /* PermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionHandler.swift; sourceTree = "<group>"; };
 		0E4B89CD2ABEB48200F358CD /* for.JOY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = for.JOY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E4B89D02ABEB48200F358CD /* for_JOYApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = for_JOYApp.swift; sourceTree = "<group>"; };
-		0E4B89D22ABEB48200F358CD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0E4B89D42ABEB48400F358CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E4B89D72ABEB48400F358CD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5B62903E2AC0171C0022E6D6 /* OffsetReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetReader.swift; sourceTree = "<group>"; };
@@ -103,7 +100,6 @@
 		5B6A3FA62ABEBAB00040C348 /* panpare.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = panpare.json; sourceTree = "<group>"; };
 		5B6A3FAB2ABEE6D60040C348 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		5B6A3FB52ABEFE150040C348 /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
-		5B6A3FB92ABF03B20040C348 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,10 +126,8 @@
 				0E0F312B2ABEF90D00A95794 /* MainView.swift */,
 				0E0F312F2ABEFAF100A95794 /* GalleryView.swift */,
 				0E0F31312ABEFB1C00A95794 /* CarouselView.swift */,
-				5B6290442AC06FA00022E6D6 /* AudioPlayerManager.swift */,
 				0E3C0E5E2ABF6F73008DF2BD /* AddDoneView.swift */,
 				0E3C0E602ABF6FD6008DF2BD /* LottieView.swift */,
-				5B62903E2AC0171C0022E6D6 /* OffsetReader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -191,12 +185,15 @@
 		0E3C0E652ABF79BD008DF2BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5B6A3FAB2ABEE6D60040C348 /* RealmManager.swift */,
+				5B6A3FB52ABEFE150040C348 /* Memory.swift */,
 				0E3C0E5C2ABF5CFE008DF2BD /* Tag.swift */,
 				0E0F31512ABF231400A95794 /* Texts.swift */,
 				0E0F314F2ABF230600A95794 /* Images.swift */,
 				0E0F31292ABEF6F400A95794 /* PageManager.swift */,
 				0E3C0E662ABF79E6008DF2BD /* DataManager.swift */,
 				0E3C0E6A2ABF7B5E008DF2BD /* Info.swift */,
+				5B6290442AC06FA00022E6D6 /* AudioPlayerManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -223,14 +220,13 @@
 				5B6290472AC0742A0022E6D6 /* for.JOY.entitlements */,
 				5B6290462AC073DF0022E6D6 /* for-JOY-Info.plist */,
 				0E4B89D02ABEB48200F358CD /* for_JOYApp.swift */,
-				0E4B89D22ABEB48200F358CD /* ContentView.swift */,
-				5B6A3FB82ABEFE7A0040C348 /* Data */,
 				5B6A3FAA2ABEBACF0040C348 /* Resource */,
 				5B6A3FA22ABEB9330040C348 /* Extensions */,
 				0E4B89D62ABEB48400F358CD /* Preview Content */,
 				0E3C0E652ABF79BD008DF2BD /* Model */,
 				0E0F31372ABEFB6B00A95794 /* Views */,
 				0E3C0E722ABFEE15008DF2BD /* PermissionHandler.swift */,
+				5B62903E2AC0171C0022E6D6 /* OffsetReader.swift */,
 			);
 			path = for.JOY;
 			sourceTree = "<group>";
@@ -274,17 +270,6 @@
 				5B6A3FA32ABEBAB00040C348 /* LottieFiles */,
 			);
 			path = Resource;
-			sourceTree = "<group>";
-		};
-		5B6A3FB82ABEFE7A0040C348 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				5B6A3FAB2ABEE6D60040C348 /* RealmManager.swift */,
-				5B6A3FB92ABF03B20040C348 /* test.swift */,
-				5B6A3FB52ABEFE150040C348 /* Memory.swift */,
-			);
-			name = Data;
-			path = Resource/Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -409,7 +394,6 @@
 				0E0F31502ABF230600A95794 /* Images.swift in Sources */,
 				0E0F312A2ABEF6F400A95794 /* PageManager.swift in Sources */,
 				0E3194AA2AC056C700B5832B /* EditInfoView.swift in Sources */,
-				0E4B89D32ABEB48200F358CD /* ContentView.swift in Sources */,
 				0E0F314E2ABF22F000A95794 /* UIScreen+.swift in Sources */,
 				0E4B89D12ABEB48200F358CD /* for_JOYApp.swift in Sources */,
 				0E3C0E6B2ABF7B5E008DF2BD /* Info.swift in Sources */,
@@ -419,7 +403,6 @@
 				5B6A3FB62ABEFE150040C348 /* Memory.swift in Sources */,
 				5B6A3FAC2ABEE6D60040C348 /* RealmManager.swift in Sources */,
 				0E0F31302ABEFAF100A95794 /* GalleryView.swift in Sources */,
-				5B6A3FBA2ABF03B20040C348 /* test.swift in Sources */,
 				5B6290452AC06FA00022E6D6 /* AudioPlayerManager.swift in Sources */,
 				0E3194B32AC08E0900B5832B /* NavigationBarColorModifier.swift in Sources */,
 				0E0F31582ABF235500A95794 /* ImageCropView.swift in Sources */,
