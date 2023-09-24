@@ -16,44 +16,57 @@ struct InfoTagView: View {
     @Binding var selectTag: String?
     @Binding var showTagView: Bool
 
+    init(selectTag: Binding<String?>, showTagView: Binding<Bool>) {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+
+        _selectTag = selectTag
+        _showTagView = showTagView
+   }
+
     var body: some View {
         NavigationView {
             VStack {
-                List(selection: $selectTag) {
-                    ForEach(0...min(tags.count, 9), id: \.self) { index in
-                        if tags.count < 10 && index == tags.count {
-                            addTagView()
-                        } else {
-                            tagButton(index)
+                if #available(iOS 16.0, *) {
+                    List(selection: $selectTag) {
+                        ForEach(0...min(tags.count, 9), id: \.self) { index in
+                            if tags.count < 10 && index == tags.count {
+                                addTagView()
+                            } else {
+                                tagButton(index)
+                            }
+                        }
+                        .onDelete { index in
+                            tags.remove(atOffsets: index)
+                            saveTags()
                         }
                     }
-                    .onDelete { index in
-                        tags.remove(atOffsets: index)
-                        saveTags()
-                    }
-                }
-                .cornerRadius(10)
-                .background(Color.joyBlack)
-                .padding(.horizontal, 20)
-                .padding(.vertical, 37)
-                .listStyle(.plain)
-                .listRowBackground(Color.joyBlack.ignoresSafeArea())
-
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(
-                            action: {
-                                showTagView.toggle()
-                            },
-                            label: {
-                                Image(systemName: "x.circle.fill")
-                                    .foregroundColor(Color.joyGrey200)
+                    .scrollContentBackground(.hidden)
+                } else {
+                    List(selection: $selectTag) {
+                        ForEach(0...min(tags.count, 9), id: \.self) { index in
+                            if tags.count < 10 && index == tags.count {
+                                addTagView()
+                            } else {
+                                tagButton(index)
                             }
-                        )
+                        }
+                        .onDelete { index in
+                            tags.remove(atOffsets: index)
+                            saveTags()
+                        }
                     }
+                    .cornerRadius(10)
+                    .background(Color.joyBlack)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 37)
+                    .listStyle(.plain)
+                    .listRowBackground(Color.joyBlack.ignoresSafeArea())
                 }
             }
             .padding(8)
+            .navigationTitle("태그")
+            .navigationBarTitleDisplayMode(.inline)
             .background(Color.joyBlack)
             .foregroundColor(.black)
             .onDisappear {
@@ -61,6 +74,19 @@ struct InfoTagView: View {
             }
             .onAppear {
                 initTags()
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(
+                        action: {
+                            showTagView.toggle()
+                        },
+                        label: {
+                            Image(systemName: Images.xButton)
+                                .foregroundColor(Color.joyGrey200)
+                        }
+                    )
+                }
             }
         }
     }
@@ -104,7 +130,7 @@ extension InfoTagView {
         HStack {
             TextField("새로운 태그", text: $newTag)
                 .onChange(of: newTag) { newValue in
-                    newTag = String(newValue.prefix(20))
+                    newTag = String(newValue.prefix(10))
                 }
                 .onSubmit {
                     if !tags.contains(where: {$0.tagName == newTag}) {
@@ -118,7 +144,7 @@ extension InfoTagView {
             Button(
                 action: {newTag = ""},
                 label: {
-                    Image(systemName: "x.circle.fill")
+                    Image(systemName: Images.xButton)
                         .foregroundColor(Color.joyGrey200)
                 }
             )
@@ -140,7 +166,7 @@ extension InfoTagView {
                     Spacer(minLength: 0)
 
                     if tags[index].tagName == selectTag {
-                        Image(systemName: "checkmark")
+                        Image(systemName: Images.check)
                             .multilineTextAlignment(.trailing)
                             .font(Font.body1Kor)
                             .foregroundColor(Color.joyBlue)

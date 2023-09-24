@@ -18,12 +18,20 @@ struct InfoView: View {
     @State private var showTagView = false
 
     let padding = UIScreen.height/844
+    var topPadding: CGFloat {
+        if #available(iOS 16.0, *) {
+            return 1
+        } else {
+            return -1
+        }
+    }
 
     var body: some View {
         NavigationView {
             ZStack {
                 Color.joyBlack
                     .ignoresSafeArea()
+                    .zIndex(-1)
 
                 VStack {
                     if let image = dataManager.imageData {
@@ -34,39 +42,53 @@ struct InfoView: View {
                             .cornerRadius(10)
                             .clipped()
                             .padding(.horizontal, 15)
-                            .padding(.top, 30*padding)
+                            .padding(.top, 30*padding*topPadding)
                     } else {
-                        Text("No image")
+                        Image("test")
+                            .resizable()
+                            .aspectRatio(CGSize(width: 3, height: 4), contentMode: .fill)
+                            .frame(width: 350*padding, height: 466*padding)
+                            .cornerRadius(10)
+                            .clipped()
+                            .padding(.horizontal, 15)
+                            .padding(.top, 30*padding*topPadding)
                     }
 
-                    VStack {
-                        titleView()
-                            .frame(maxHeight: 40)
-                            .padding(.horizontal, 16)
-                            .padding(.top, 5)
-
-                        Divider()
-
-                        tagView()
-                            .frame(maxHeight: 40)
-                            .padding(.horizontal, 16)
-
-                        Divider()
-
-                        DatePicker(
-                            "날짜",
-                            selection: $date,
-                            displayedComponents: [.date]
-                        )
-                        .frame(maxHeight: 40)
-                        .accentColor(Color.joyBlue)
-                        .padding(.horizontal, 16)
-                        .padding(.bottom, 5)
+                    if #available(iOS 16.0, *) {
+                        List {
+                            titleView()
+                            tagView()
+                            DatePicker(
+                                "날짜",
+                                selection: $date,
+                                displayedComponents: [.date]
+                            )
+                            .tint(Color.joyBlue)
+                            .listRowBackground(Color.joyWhite)
+                        }
+                        .scrollContentBackground(.hidden)
+                        .scrollDisabled(true)
+                    } else {
+                        List {
+                            titleView()
+                            tagView()
+                            DatePicker(
+                                "날짜",
+                                selection: $date,
+                                displayedComponents: [.date]
+                            )
+                            .accentColor(Color.accentColor)
+                            .listRowBackground(Color.joyWhite)
+                        }
+                        .cornerRadius(10)
+                        .padding(.horizontal, 20)
+                        .padding(.top, 30)
+                        .listStyle(.plain)
                     }
-                    .background(Color.joyWhite)
-                    .cornerRadius(10)
-                    .padding(.horizontal, 20)
+
+                    Spacer(minLength: 0)
                 }
+                .background(Color.joyBlack)
                 .foregroundColor(Color.black)
                 .navigationBarBackButtonHidden(true)
                 .navigationBarItems(leading: backButton)
@@ -92,7 +114,7 @@ struct InfoView: View {
         Button {
             pushBackButton = true
         } label: {
-            Text("\(Image(systemName: "chevron.backward")) 다시 녹음")
+            Text("\(Image(systemName: Images.chevronBack)) 다시 녹음")
                 .foregroundColor(.joyBlue)
         }
     }
@@ -143,11 +165,11 @@ extension InfoView {
                 },
                 label: {
                     if tag == nil {
-                        Text("없음 \(Image(systemName: "chevron.right"))")
+                        Text("없음 \(Image(systemName: Images.chevronRight))")
                             .frame(maxWidth: 250, alignment: .trailing)
                             .foregroundColor(.black)
                     } else {
-                        Text("\(tag!)\(Image(systemName: "chevron.right"))")
+                        Text("\(tag!)\(Image(systemName: Images.chevronRight))")
                             .frame(maxWidth: 250, alignment: .trailing)
                             .foregroundColor(.black)
                     }
@@ -162,8 +184,8 @@ extension InfoView {
     func doneAction() {
         let year = Int(date.toString(dateFormat: "yyyy"))!
 
-        //TODO: ADD DAta
-//        saveImage()
+        //TODO: ADD Data
+        saveImage()
 
         dataManager.info = Info(
             title: title,
