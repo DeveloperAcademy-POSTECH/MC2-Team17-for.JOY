@@ -118,8 +118,7 @@ extension CarouselView {
                 ForEach(yearlyMemories, id: \.id) { memory in
                     if !memory.isInvalidated {
                         VStack(spacing: 7) {
-                            Image(Images.emptyMemory)
-                                .resizable()
+                            Image(uiImage: UIImage(data: Data(base64Encoded: memory.img)!) ?? UIImage(named: Images.emptyMemory)!)
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: imageWidth, height: imageWidth / 3 * 4)
                                 .clipped()
