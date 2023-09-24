@@ -12,11 +12,4 @@ struct Info {
     let year: Int16
     let date: Date
     let tag: String
-
-//    init(title: String, year: Int16, date: Date, tag: String) {
-//        self.title = title
-//        self.year = year
-//        self.date = date
-//        self.tag = tag
-//    }
 }

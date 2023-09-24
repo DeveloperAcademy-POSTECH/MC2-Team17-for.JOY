@@ -39,8 +39,20 @@ struct ImageCropView: View {
                             Spacer(minLength: 0)
 
                             Button("선택") {
-                                let img = imageView(true).snapshot()
-                                onCrop(img, true)
+                                if #available(iOS 16.0, *) {
+                                    let renderer = ImageRenderer(content: imageView(true))
+                                    renderer.proposedSize = .init(CGSize(width: 346, height: 459))
+
+                                    if let image = renderer.uiImage {
+                                        onCrop(image, true)
+                                    } else {
+                                        onCrop(nil, false)
+                                    }
+                                } else {
+                                    let img = imageView(true).snapshot()
+                                    onCrop(img, true)
+                                }
+
                                 showCropView = false
                             }
                         }
@@ -48,21 +60,6 @@ struct ImageCropView: View {
                     }
                 }
         }
-    }
-
-    func renderImage() {
-        let size = CGSize(width: 346, height: 459)
-
-        let renderer = UIGraphicsImageRenderer(size: size)
-        let image = renderer.image { _ in
-            if showCropView {
-                UIColor.red.setFill()
-                UIBezierPath(rect: CGRect(origin: .zero, size: size)).fill()
-            }
-        }
-
-        onCrop(image, true)
-        showCropView = false
     }
 
     @ViewBuilder
@@ -186,9 +183,9 @@ extension View {
         let controller = UIHostingController(rootView: self)
         let view = controller.view
 
-        let targetSize = CGSize(width: 346, height: 459)
+        let targetSize = controller.view.intrinsicContentSize
         view?.bounds = CGRect(origin: .zero, size: targetSize)
-        view?.backgroundColor = .clear
+        view?.backgroundColor = .white
 
         let renderer = UIGraphicsImageRenderer(size: targetSize)
 

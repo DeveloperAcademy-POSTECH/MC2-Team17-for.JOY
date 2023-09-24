@@ -9,8 +9,7 @@ import Foundation
 
 enum Texts {
     static let createMemoryButton = "새로운 추억 기록하기"
-    //TODO: 수정하기
-    static let cameraActionSheetTitle = "Photo"
+    static let cameraActionSheetTitle = "사진 촬영 및 선택하기"
     static let cameraActionSheetCamera = "사진 촬영"
     static let cameraActionSheetLibrary = "사진 선택"
     static let emptyMemoryDescription = "첫 기록을 기다리고 있어요"

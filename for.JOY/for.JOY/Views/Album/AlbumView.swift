@@ -78,6 +78,7 @@ extension AlbumView {
             .background(Color.joyBlue)
             .clipShape(RoundedRectangle(cornerRadius: 6))
         }
+        .foregroundColor(.joyWhite)
         .transaction { transaction in
             transaction.animation = nil
         }

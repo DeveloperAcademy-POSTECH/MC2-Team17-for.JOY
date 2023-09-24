@@ -48,7 +48,7 @@ extension GalleryView {
         Button {
             PageManger.shared.pageState = .album
         } label: {
-            Image(systemName: Images.back)
+            Image(systemName: Images.chevronLeft)
                 .foregroundColor(Color.joyBlue)
         }
     }
