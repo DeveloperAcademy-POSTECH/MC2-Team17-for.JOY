@@ -33,12 +33,12 @@ struct VoiceView: View {
                             .padding(.bottom, 30)
                     }
 
-//                    SoundVisualizer()
-//                        .frame(width: 217 * padding, height: 35 * padding)
-//                        .opacity(voiceViewModel.isRecording && !voiceViewModel.isEndRecording ? 1 : 0)
-//                        .offset(y: voiceViewModel.isRecording && !voiceViewModel.isEndRecording ? 0 : -50)
-//                        .animation(.easeInOut(duration: 0.5))
-//                        .padding(.bottom, 20 * padding)
+                    SoundVisualizer()
+                        .frame(width: 217 * padding, height: 35 * padding)
+                        .opacity(voiceViewModel.isRecording && !voiceViewModel.isEndRecording ? 1 : 0)
+                        .offset(y: voiceViewModel.isRecording && !voiceViewModel.isEndRecording ? 0 : -217 * padding)
+                        .animation(.easeInOut(duration: 0.5))
+                        .padding(.bottom, 20 * padding)
 
                     TimerView(viewModel: voiceViewModel, recording: $recording)
                         .frame(width: 57 * padding, height: 94 * padding)
