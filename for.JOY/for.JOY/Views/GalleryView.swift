@@ -109,8 +109,8 @@ extension GalleryView {
     }
 }
 
-//struct GalleryView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GalleryView()
-//    }
-//}
+struct GalleryView_Previews: PreviewProvider {
+    static var previews: some View {
+        GalleryView(dataManager: DataManager())
+    }
+}
