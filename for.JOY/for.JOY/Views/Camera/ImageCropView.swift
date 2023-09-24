@@ -133,7 +133,7 @@ struct ImageCropView: View {
                     }
                 }
         )
-        .frame(width: 346, height: 459)
+        .frame(width: 350, height: 466)
         .cornerRadius(0)
     }
 
