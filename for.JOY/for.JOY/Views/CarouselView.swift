@@ -10,13 +10,11 @@ import RealmSwift
 
 struct CarouselView: View {
     @StateObject var realmManager = RealmManager.shared
-//    @State private var fakedMemories: [Memory] = []
-//    @State private var offset = 0.0
+    @ObservedObject var dataManager = DataManager()
     @State private var isShowAlert = false
     @State private var yearlyMemories: [Memory] = []
     @State var isPlaying = false
-    @State var currentIndex: ObjectId = .init()
-    let year = 2023
+    @State var currentId: ObjectId = .init()
     private let cardWidth = UIScreen.width - 70
     private let cardHeight = (UIScreen.width - 104) / 3 * 4 + 132
     private let imageWidth = UIScreen.width - 104
@@ -32,9 +30,9 @@ struct CarouselView: View {
                 }
             }
             .onAppear {
-//                guard fakedMemories.isEmpty else { return }
+                currentId = dataManager.selectedId!
+                let year = dataManager.selectedYear!
                 yearlyMemories = realmManager.yearlyMemories[year]!
-                currentIndex = yearlyMemories.first!.id
             }
             .alert(Texts.deleteAlertCheck, isPresented: $isShowAlert,
                    actions: {
@@ -42,18 +40,23 @@ struct CarouselView: View {
                     isShowAlert = false
                 }
                 Button(Texts.deleteButtonLabel, role: .destructive) {
-                    var index = originIndex(currentIndex)
+                    let year = dataManager.selectedYear!
+                    let tag = dataManager.selectedTag
+                    var index = originIndex(currentId)
                     if index == yearlyMemories.count - 1 {
                         index = 0
                     }
-                    realmManager.deleteMemory(currentIndex)
-                    realmManager.selectYealryMemories()
+                    realmManager.deleteMemory(currentId)
+                    if tag != nil {
+                        realmManager.selectYealryMemories(tag!)
+                    } else {
+                        realmManager.selectYealryMemories()
+                    }
                     yearlyMemories = realmManager.yearlyMemories[year] ?? []
-//                    fakedMemories = yearlyMemories
                     if yearlyMemories.isEmpty {
                         PageManger.shared.pageState = .gallery
                     } else {
-                        currentIndex = yearlyMemories[index].id
+                        currentId = yearlyMemories[index].id
                     }
                 }
             }, message: {
@@ -63,9 +66,6 @@ struct CarouselView: View {
             .navigationBarItems(trailing: editButton())
         }
     }
-//    func fakeIndex(_ of: Memory) -> Int {
-//        return fakedMemories.firstIndex(of: of) ?? 0
-//    }
     func originIndex(_ id: ObjectId) -> Int {
         return yearlyMemories.firstIndex { page in
             page.id == id
@@ -112,9 +112,7 @@ extension CarouselView {
     }
     @ViewBuilder
     func carouselMainView() -> some View {
-        GeometryReader {
-            let size = $0.size
-            TabView(selection: $currentIndex) {
+            TabView(selection: $currentId) {
                 ForEach(yearlyMemories, id: \.id) { memory in
                     if !memory.isInvalidated {
                         VStack(spacing: 7) {
@@ -152,44 +150,20 @@ extension CarouselView {
                                 .padding(.trailing, 20)
                             }
                         }
+                        .tag(memory.id)
                         .padding(.bottom, 21)
                         .frame(width: cardWidth, height: cardHeight)
                         .background(Color.joyWhite)
                         .cornerRadius(20)
                         .shadow(radius: 4)
-                        .tag(memory.id)
-//                        .offsetX(currentIndex == memory.id) { rect in
-//                            let minX = rect.minX
-//                            let pageOffset = minX - (size.width * CGFloat(fakeIndex(memory)))
-//                            let pageProgress = pageOffset / size.width
-//                            if -pageProgress < 1.0 {
-//                                if fakedMemories.indices.contains(fakedMemories.count - 1) {
-//                                    currentIndex = fakedMemories[fakedMemories.count - 1].id
-//                                }
-//                            }
-//                            if -pageProgress > CGFloat(fakedMemories.count - 1) {
-//                                if fakedMemories.indices.contains(1) {
-//                                    currentIndex = fakedMemories[1].id
-//                                }
-//                            }
-//                        }
                     }
                 }
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
-//            .onAppear {
-//                fakedMemories.append(contentsOf: yearlyMemories)
-//                guard var first = yearlyMemories.first else { return }
-//                guard var last = yearlyMemories.last else { return }
-//                currentIndex = first.id
-//                fakedMemories.append(first)
-//                fakedMemories.insert(last, at: 0)
-//            }
-        }
     }
     @ViewBuilder
     func pageNumbering() -> some View {
-        Text("\(originIndex(currentIndex) + 1) / \(yearlyMemories.count)")
+        Text("\(originIndex(currentId) + 1) / \(yearlyMemories.count)")
             .font(Font.body3)
             .foregroundColor(Color.joyWhite)
             .background(
@@ -200,8 +174,8 @@ extension CarouselView {
     }
 }
 
-struct CarouselView_Previews: PreviewProvider {
-    static var previews: some View {
-        CarouselView()
-    }
-}
+//struct CarouselView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CarouselView()
+//    }
+//}

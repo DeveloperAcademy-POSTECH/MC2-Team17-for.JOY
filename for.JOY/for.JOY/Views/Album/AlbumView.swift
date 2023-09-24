@@ -10,8 +10,6 @@ import SwiftUI
 struct AlbumView: View {
     @ObservedObject var dataManager: DataManager
     @StateObject var realmManager = RealmManager.shared
-    @State var selectedTag = Texts.allTags
-    @State var isAllSelected = true
     @State var isNewest = true
     private let emptypMemoryImgSize = 200.0 * UIScreen.height / 844
     var columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 20), count: 2)
@@ -29,7 +27,12 @@ struct AlbumView: View {
             }
             .onAppear {
                 realmManager.selectAllMemories()
-                realmManager.selectYealryMemories()
+                let tag = dataManager.selectedTag
+                if tag != nil {
+                    realmManager.selectYealryMemories(tag!)
+                } else {
+                    realmManager.selectYealryMemories()
+                }
             }
             .edgesIgnoringSafeArea([.bottom])
             .navigationBarItems(leading: tagButton())
@@ -43,14 +46,13 @@ extension AlbumView {
     func tagButton() -> some View {
         Menu {
             Button {
-                selectedTag = Texts.allTags
-                isAllSelected = true
+                dataManager.selectedTag = nil
                 realmManager.selectYealryMemories()
             } label: {
                 HStack {
-                    Text(Texts.allTags)
+                    Text("모든 태그")
                     Spacer()
-                    if isAllSelected {
+                    if dataManager.selectedTag == nil {
                         Image(systemName: Images.check)
                     }
                 }
@@ -58,14 +60,13 @@ extension AlbumView {
             ForEach(realmManager.distinctTags, id: \.self) { tag in
                 if tag != "없음" {
                     Button {
-                        selectedTag = tag
-                        isAllSelected = false
-                        realmManager.selectYealryMemories(selectedTag)
+                        dataManager.selectedTag = tag
+                        realmManager.selectYealryMemories(tag)
                     } label: {
                         HStack {
                             Text(tag)
                             Spacer()
-                            if tag == selectedTag {
+                            if tag == dataManager.selectedTag {
                                 Image(systemName: Images.check)
                             }
                         }
@@ -75,7 +76,7 @@ extension AlbumView {
         } label: {
             HStack(spacing: 5) {
                 Image(systemName: Images.tag)
-                Text(selectedTag)
+                Text(dataManager.selectedTag ?? "모든 태그")
                     .lineLimit(1)
             }
             .font(Font.body2Kor)
@@ -166,6 +167,7 @@ extension AlbumView {
                             .padding(.horizontal, 13)
                         }
                         .onTapGesture {
+                            dataManager.selectedYear = year
                             PageManger.shared.pageState = .gallery
                         }
                         .cornerRadius(10)

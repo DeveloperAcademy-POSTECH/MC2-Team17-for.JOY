@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 class DataManager: ObservableObject {
     @Published var imageData: UIImage?
     @Published var recording: URL?
     @Published var info: Info?
+    @Published var selectedYear: Int?
+    @Published var selectedTag: String?
+    @Published var selectedId: ObjectId?
 }

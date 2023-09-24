@@ -15,7 +15,6 @@ enum Texts {
     static let emptyMemoryDescription = "첫 기록을 기다리고 있어요"
     static let recentItemFirst = "최신 항목 순으로"
     static let oldestItemFirst = "오래된 항목 순으로"
-    static let allTags = "모든 태그"
     static let editButtonLabel = "편집"
     static let deleteButtonLabel = "삭제"
     static let cancelButtonLabel = "취소"
