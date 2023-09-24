@@ -56,16 +56,18 @@ extension AlbumView {
                 }
             }
             ForEach(realmManager.distinctTags, id: \.self) { tag in
-                Button {
-                    selectedTag = tag
-                    isAllSelected = false
-                    realmManager.selectYealryMemories(selectedTag)
-                } label: {
-                    HStack {
-                        Text(tag)
-                        Spacer()
-                        if tag == selectedTag {
-                            Image(systemName: Images.check)
+                if tag != "없음" {
+                    Button {
+                        selectedTag = tag
+                        isAllSelected = false
+                        realmManager.selectYealryMemories(selectedTag)
+                    } label: {
+                        HStack {
+                            Text(tag)
+                            Spacer()
+                            if tag == selectedTag {
+                                Image(systemName: Images.check)
+                            }
                         }
                     }
                 }
@@ -148,7 +150,7 @@ extension AlbumView {
                         ZStack {
                             Color.joyWhite
                             VStack(alignment: .trailing, spacing: 0) {
-                                Image(Images.emptyMemory)
+                                Image(uiImage: UIImage(data: Data(base64Encoded: yearlyMemories.first!.img)!) ?? UIImage(named: Images.emptyMemory)!)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: imageSize, height: imageSize)
