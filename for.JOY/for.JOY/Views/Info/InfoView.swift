@@ -54,6 +54,7 @@ struct InfoView: View {
                 .navigationBarBackButtonHidden(true)
                 .navigationBarItems(leading: backButton)
                 .navigationBarItems(trailing: doneButton)
+                .navigationBarColor(UIColor(.joyBlack))
 
                 .alert("다시 녹음하시겠습니까?", isPresented: $pushBackButton, actions: {
                     Button("취소", role: .cancel) { }
@@ -67,7 +68,7 @@ struct InfoView: View {
                 .sheet(isPresented: $showTagView) {
                     InfoTagView(selectTag: $tag, showTagView: $showTagView)
                 }
-                .keyboardAdaptive()
+                .padding(.bottom, showTagView ? -100 : 0)
             }
         }
     }
@@ -254,5 +255,3 @@ struct InfoView_Previews: PreviewProvider {
         InfoView(dataManager: DataManager())
     }
 }
-
-

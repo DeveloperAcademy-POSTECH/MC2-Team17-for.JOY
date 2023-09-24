@@ -53,6 +53,7 @@ struct EditInfoView: View {
                 .navigationBarBackButtonHidden(true)
                 .navigationBarItems(leading: backButton)
                 .navigationBarItems(trailing: doneButton)
+                .navigationBarColor(UIColor(.joyBlack))
 
                 .onAppear {
                     title = selectedData.title
@@ -70,8 +71,6 @@ struct EditInfoView: View {
                 .sheet(isPresented: $showTagView) {
                     InfoTagView(selectTag: $tag, showTagView: $showTagView)
                 }
-
-                .keyboardAdaptive()
             }
         }
     }
@@ -95,11 +94,6 @@ struct EditInfoView: View {
                 } else {
                     realmManager.selectYealryMemories()
                 }
-
-//                selectedData.title = title
-//                selectedData.tag = tag ?? "없음"
-//                selectedData.date = date
-
                 dismiss()
             }, label: {
                 Text("저장")
@@ -132,9 +126,9 @@ extension EditInfoView {
                 .accentColor(.joyBlue)
                 .font(.system(size: (17.0 - CGFloat(selectedData.title.count)*0.3)))
                 .multilineTextAlignment(.trailing)
-//                .onChange(of: selectedData.title) { newValue in
-//                    selectedData.title = String(newValue.prefix(20))
-//                }
+                .onChange(of: title) { newValue in
+                    title = String(newValue.prefix(20))
+                }
                 .padding(.trailing, 4)
         }
         .listRowBackground(Color.joyWhite)
