@@ -155,7 +155,6 @@
 			children = (
 				0E0F316C2ABF3D8B00A95794 /* SoundVisualizer */,
 				0E0F31332ABEFB2500A95794 /* VoiceView.swift */,
-				0E0F31682ABF38EE00A95794 /* VoiceViewModel.swift */,
 				0E0F316A2ABF390500A95794 /* TimerView.swift */,
 			);
 			path = Voice;
@@ -165,10 +164,31 @@
 			isa = PBXGroup;
 			children = (
 				0E0F316D2ABF3D9B00A95794 /* SoundVisualizer.swift */,
-				0E0F316F2ABF3DB700A95794 /* MicrophoneMonitor.swift */,
 				0E0F31712ABF3DCE00A95794 /* BarView.swift */,
 			);
 			path = SoundVisualizer;
+			sourceTree = "<group>";
+		};
+		0E3194B42AC09B9B00B5832B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5B6A3FAB2ABEE6D60040C348 /* RealmManager.swift */,
+				0E0F31292ABEF6F400A95794 /* PageManager.swift */,
+				5B6290442AC06FA00022E6D6 /* AudioPlayerManager.swift */,
+				0E3C0E662ABF79E6008DF2BD /* DataManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		0E3194B52AC09BA600B5832B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5B62903E2AC0171C0022E6D6 /* OffsetReader.swift */,
+				0E3C0E722ABFEE15008DF2BD /* PermissionHandler.swift */,
+				0E3194B22AC08E0900B5832B /* NavigationBarColorModifier.swift */,
+				0E0F316F2ABF3DB700A95794 /* MicrophoneMonitor.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		0E3C0E592ABF405C008DF2BD /* Info */ = {
@@ -177,7 +197,6 @@
 				0E3C0E5A2ABF5C9A008DF2BD /* InfoTagView.swift */,
 				0E3194A72AC04B2A00B5832B /* InfoView.swift */,
 				0E3194A92AC056C700B5832B /* EditInfoView.swift */,
-				0E3194B22AC08E0900B5832B /* NavigationBarColorModifier.swift */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -185,15 +204,12 @@
 		0E3C0E652ABF79BD008DF2BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5B6A3FAB2ABEE6D60040C348 /* RealmManager.swift */,
 				5B6A3FB52ABEFE150040C348 /* Memory.swift */,
 				0E3C0E5C2ABF5CFE008DF2BD /* Tag.swift */,
 				0E0F31512ABF231400A95794 /* Texts.swift */,
 				0E0F314F2ABF230600A95794 /* Images.swift */,
-				0E0F31292ABEF6F400A95794 /* PageManager.swift */,
-				0E3C0E662ABF79E6008DF2BD /* DataManager.swift */,
 				0E3C0E6A2ABF7B5E008DF2BD /* Info.swift */,
-				5B6290442AC06FA00022E6D6 /* AudioPlayerManager.swift */,
+				0E0F31682ABF38EE00A95794 /* VoiceViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -220,13 +236,13 @@
 				5B6290472AC0742A0022E6D6 /* for.JOY.entitlements */,
 				5B6290462AC073DF0022E6D6 /* for-JOY-Info.plist */,
 				0E4B89D02ABEB48200F358CD /* for_JOYApp.swift */,
-				5B6A3FAA2ABEBACF0040C348 /* Resource */,
+				0E3194B42AC09B9B00B5832B /* Services */,
+				0E3194B52AC09BA600B5832B /* Utils */,
 				5B6A3FA22ABEB9330040C348 /* Extensions */,
-				0E4B89D62ABEB48400F358CD /* Preview Content */,
 				0E3C0E652ABF79BD008DF2BD /* Model */,
 				0E0F31372ABEFB6B00A95794 /* Views */,
-				0E3C0E722ABFEE15008DF2BD /* PermissionHandler.swift */,
-				5B62903E2AC0171C0022E6D6 /* OffsetReader.swift */,
+				5B6A3FAA2ABEBACF0040C348 /* Resource */,
+				0E4B89D62ABEB48400F358CD /* Preview Content */,
 			);
 			path = for.JOY;
 			sourceTree = "<group>";
