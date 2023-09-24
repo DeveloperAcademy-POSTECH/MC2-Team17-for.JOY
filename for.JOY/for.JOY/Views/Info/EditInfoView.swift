@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EditInfoView: View {
     @Environment(\.dismiss) private var dismiss
+    @ObservedObject var realmManager: RealmManager
     @State private var title: String = ""
     @State private var tag: String?
     @State private var date = Date()
@@ -87,11 +88,17 @@ struct EditInfoView: View {
     private var doneButton: some View {
         Button(
             action: {
-                //TODO: update
+                realmManager.updateMemory(selectedData.id, title, tag)
+                let tag = DataManager().selectedTag
+                if tag != nil {
+                    realmManager.selectYealryMemories(tag)
+                } else {
+                    realmManager.selectYealryMemories()
+                }
 
-                selectedData.title = title
-                selectedData.tag = tag ?? "없음"
-                selectedData.date = date
+//                selectedData.title = title
+//                selectedData.tag = tag ?? "없음"
+//                selectedData.date = date
 
                 dismiss()
             }, label: {
@@ -125,9 +132,9 @@ extension EditInfoView {
                 .accentColor(.joyBlue)
                 .font(.system(size: (17.0 - CGFloat(selectedData.title.count)*0.3)))
                 .multilineTextAlignment(.trailing)
-                .onChange(of: selectedData.title) { newValue in
-                    selectedData.title = String(newValue.prefix(20))
-                }
+//                .onChange(of: selectedData.title) { newValue in
+//                    selectedData.title = String(newValue.prefix(20))
+//                }
                 .padding(.trailing, 4)
         }
         .listRowBackground(Color.joyWhite)
@@ -153,8 +160,8 @@ extension EditInfoView {
     }
 }
 
-struct EditInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditInfoView(selectedData: Memory())
-    }
-}
+//struct EditInfoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditInfoView(selectedData: Memory())
+//    }
+//}

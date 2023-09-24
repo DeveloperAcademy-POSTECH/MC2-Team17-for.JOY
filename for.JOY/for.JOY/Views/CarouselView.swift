@@ -14,6 +14,7 @@ struct CarouselView: View {
     @ObservedObject var dataManager: DataManager
     @StateObject var audioPlayerManager = AudioPlayerManager()
     @State private var isShowAlert = false
+    @State private var isShowEditSheet = false
     @State private var yearlyMemories: [Memory] = []
     @State var currentId: ObjectId = .init()
     private let cardWidth = UIScreen.width - 70
@@ -88,8 +89,7 @@ extension CarouselView {
     func editButton() -> some View {
         Menu {
             Button {
-                // TODO: EditInfoView() 생성 후 추가
-                PageManger.shared.pageState = .info
+                self.isShowEditSheet = true
             } label: {
                 HStack {
                     Text(Texts.editButtonLabel)
@@ -156,6 +156,9 @@ extension CarouselView {
                                 }
                                 .padding(.trailing, 20)
                             }
+                        }
+                        .fullScreenCover(isPresented: $isShowEditSheet) {
+                            EditInfoView(realmManager: realmManager, selectedData: memory)
                         }
                         .tag(memory.id)
                         .padding(.bottom, 21)

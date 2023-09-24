@@ -81,15 +81,14 @@ class RealmManager: ObservableObject {
             }
         }
     }
-    func updateMemory(_ id: ObjectId, _ title: String, _ tag: String, _ date: Date) {
+    func updateMemory(_ id: ObjectId, _ title: String, _ tag: String?) {
         if let localRealm = localRealm {
             do {
                 let memoryToUpdate = localRealm.objects(Memory.self).filter(NSPredicate(format: "id == %@", id))
                 guard !memoryToUpdate.isEmpty else { return }
                 try localRealm.write {
                     memoryToUpdate[0].title = title
-                    memoryToUpdate[0].tag = tag
-                    memoryToUpdate[0].date = date
+                    memoryToUpdate[0].tag = tag ?? "없음"
                     selectAllMemories()
                     print(RealmSuccess.realmUpdateDataSucceeded.successMessage)
                 }

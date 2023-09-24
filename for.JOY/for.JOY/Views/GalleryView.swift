@@ -91,16 +91,18 @@ extension GalleryView {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 4.5) {
                 ForEach(yearlyMemories, id: \.self) { memory in
-                    Image(uiImage: UIImage(data: Data(base64Encoded: memory.img)!) ?? UIImage(named: Images.emptyMemory)!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: imageSize, height: imageSize)
-                        .clipped()
-                        .cornerRadius(10)
-                        .onTapGesture {
-                            dataManager.selectedId = memory.id
-                            PageManger.shared.pageState = .carousel
-                        }
+                    if !memory.isInvalidated {
+                        Image(uiImage: UIImage(data: Data(base64Encoded: memory.img)!) ?? UIImage(named: Images.emptyMemory)!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: imageSize, height: imageSize)
+                            .clipped()
+                            .cornerRadius(10)
+                            .onTapGesture {
+                                dataManager.selectedId = memory.id
+                                PageManger.shared.pageState = .carousel
+                            }
+                    }
                 }
             }
         }
