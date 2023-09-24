@@ -186,8 +186,8 @@ extension CarouselView {
     }
 }
 
-//struct CarouselView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CarouselView()
-//    }
-//}
+struct CarouselView_Previews: PreviewProvider {
+    static var previews: some View {
+        CarouselView(dataManager: DataManager())
+    }
+}

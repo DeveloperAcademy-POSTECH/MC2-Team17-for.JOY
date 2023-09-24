@@ -154,8 +154,8 @@ extension EditInfoView {
     }
 }
 
-//struct EditInfoView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EditInfoView(selectedData: Memory())
-//    }
-//}
+struct EditInfoView_Previews: PreviewProvider {
+    static var previews: some View {
+        EditInfoView(realmManager: RealmManager.shared, selectedData: Memory())
+    }
+}
