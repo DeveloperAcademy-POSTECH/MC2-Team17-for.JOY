@@ -38,6 +38,7 @@
 		0E4B89D52ABEB48400F358CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E4B89D42ABEB48400F358CD /* Assets.xcassets */; };
 		0E4B89D82ABEB48400F358CD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E4B89D72ABEB48400F358CD /* Preview Assets.xcassets */; };
 		5B62903F2AC0171C0022E6D6 /* OffsetReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62903E2AC0171C0022E6D6 /* OffsetReader.swift */; };
+		5B6290452AC06FA00022E6D6 /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6290442AC06FA00022E6D6 /* AudioPlayerManager.swift */; };
 		5B6A3F9D2ABEB81D0040C348 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A3F9C2ABEB81D0040C348 /* Font+.swift */; };
 		5B6A3F9F2ABEB85E0040C348 /* Colors+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A3F9E2ABEB85E0040C348 /* Colors+.swift */; };
 		5B6A3FA12ABEB87A0040C348 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A3FA02ABEB87A0040C348 /* Date+.swift */; };
@@ -83,6 +84,9 @@
 		0E4B89D42ABEB48400F358CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E4B89D72ABEB48400F358CD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5B62903E2AC0171C0022E6D6 /* OffsetReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetReader.swift; sourceTree = "<group>"; };
+		5B6290442AC06FA00022E6D6 /* AudioPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerManager.swift; sourceTree = "<group>"; };
+		5B6290462AC073DF0022E6D6 /* for-JOY-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "for-JOY-Info.plist"; sourceTree = SOURCE_ROOT; };
+		5B6290472AC0742A0022E6D6 /* for.JOY.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = for.JOY.entitlements; sourceTree = "<group>"; };
 		5B6A3F9C2ABEB81D0040C348 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		5B6A3F9E2ABEB85E0040C348 /* Colors+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors+.swift"; sourceTree = "<group>"; };
 		5B6A3FA02ABEB87A0040C348 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 				0E0F312B2ABEF90D00A95794 /* MainView.swift */,
 				0E0F312F2ABEFAF100A95794 /* GalleryView.swift */,
 				0E0F31312ABEFB1C00A95794 /* CarouselView.swift */,
+				5B6290442AC06FA00022E6D6 /* AudioPlayerManager.swift */,
 				0E3C0E5E2ABF6F73008DF2BD /* AddDoneView.swift */,
 				0E3C0E602ABF6FD6008DF2BD /* LottieView.swift */,
 				5B62903E2AC0171C0022E6D6 /* OffsetReader.swift */,
@@ -205,6 +210,8 @@
 		0E4B89CF2ABEB48200F358CD /* for.JOY */ = {
 			isa = PBXGroup;
 			children = (
+				5B6290472AC0742A0022E6D6 /* for.JOY.entitlements */,
+				5B6290462AC073DF0022E6D6 /* for-JOY-Info.plist */,
 				0E4B89D02ABEB48200F358CD /* for_JOYApp.swift */,
 				0E4B89D22ABEB48200F358CD /* ContentView.swift */,
 				5B6A3FB82ABEFE7A0040C348 /* Data */,
@@ -398,6 +405,7 @@
 				5B6A3FAC2ABEE6D60040C348 /* RealmManager.swift in Sources */,
 				0E0F31302ABEFAF100A95794 /* GalleryView.swift in Sources */,
 				5B6A3FBA2ABF03B20040C348 /* test.swift in Sources */,
+				5B6290452AC06FA00022E6D6 /* AudioPlayerManager.swift in Sources */,
 				0E0F31582ABF235500A95794 /* ImageCropView.swift in Sources */,
 				0E0F31522ABF231400A95794 /* Texts.swift in Sources */,
 				0E3C0E5D2ABF5CFE008DF2BD /* Tag.swift in Sources */,
@@ -535,13 +543,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = for.JOY/for.JOY.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"for.JOY/Preview Content\"";
-				DEVELOPMENT_TEAM = HQS8MXQ7B5;
+				DEVELOPMENT_TEAM = 5Z238234D5;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "for-JOY-Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "\"forJoy\"가 게시글에 사진을 촬영하여 등록하는 기능 사용을 위해 카메라에 접근하도록 허용합니다.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "\"forJoy\"가 음성을 녹음하여 게시글에 오디오를 첨부하는 기능 사용을 위해 마이크에 접근하도록 허용합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"forJoy\"가 게시글에 사진을 첨부하는 기능 사용을 위해 사진 라이브러리에 접근하도록 허용합니다.";
@@ -568,13 +578,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = for.JOY/for.JOY.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"for.JOY/Preview Content\"";
-				DEVELOPMENT_TEAM = HQS8MXQ7B5;
+				DEVELOPMENT_TEAM = 5Z238234D5;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "for-JOY-Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "\"forJoy\"가 게시글에 사진을 촬영하여 등록하는 기능 사용을 위해 카메라에 접근하도록 허용합니다.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "\"forJoy\"가 음성을 녹음하여 게시글에 오디오를 첨부하는 기능 사용을 위해 마이크에 접근하도록 허용합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"forJoy\"가 게시글에 사진을 첨부하는 기능 사용을 위해 사진 라이브러리에 접근하도록 허용합니다.";

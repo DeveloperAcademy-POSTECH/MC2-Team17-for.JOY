@@ -7,13 +7,14 @@
 
 import SwiftUI
 import RealmSwift
+import AVFoundation
 
 struct CarouselView: View {
     @StateObject var realmManager = RealmManager.shared
-    @ObservedObject var dataManager = DataManager()
+    @ObservedObject var dataManager: DataManager
+    @StateObject var audioPlayerManager = AudioPlayerManager()
     @State private var isShowAlert = false
     @State private var yearlyMemories: [Memory] = []
-    @State var isPlaying = false
     @State var currentId: ObjectId = .init()
     private let cardWidth = UIScreen.width - 70
     private let cardHeight = (UIScreen.width - 104) / 3 * 4 + 132
@@ -137,14 +138,20 @@ extension CarouselView {
                                 .padding(.leading, 27)
                                 Spacer()
                                 Button {
-                                    isPlaying.toggle()
+                                    let url = URL(string: memory.voice)!
+                                    print(url)
+                                    if audioPlayerManager.isPlaying && audioPlayerManager.audioPlayer?.url == url {
+                                        audioPlayerManager.isPaused ? audioPlayerManager.resumePlaying() : audioPlayerManager.pausePlaying()
+                                    } else {
+                                        audioPlayerManager.startPlaying(recordingURL: url)
+                                    }
                                 } label: {
                                     Circle()
                                         .frame(width: 50)
-                                        .foregroundColor(isPlaying ? Color.joyYellow : Color.joyGrey100)
+                                        .foregroundColor(audioPlayerManager.isPlaying && !audioPlayerManager.isPaused ? Color.joyYellow : Color.joyGrey100)
                                         .overlay {
-                                            Image(systemName: isPlaying ? Images.pause : Images.play)
-                                                .foregroundColor(isPlaying ? Color.joyWhite : Color.joyBlue)
+                                            Image(systemName: audioPlayerManager.isPlaying && !audioPlayerManager.isPaused ? Images.pause : Images.play)
+                                                .foregroundColor(audioPlayerManager.isPlaying ? Color.joyWhite : Color.joyBlue)
                                         }
                                 }
                                 .padding(.trailing, 20)
