@@ -31,7 +31,7 @@ class VoiceViewModel: NSObject, ObservableObject {
         }
 
         guard let path = FileManager.default.containerURL(
-            forSecurityApplicationGroupIdentifier: "group.for.helia")
+            forSecurityApplicationGroupIdentifier: "group.newyork.forJoy")
         else {
             print("Failed to access app group identifier")
             return
