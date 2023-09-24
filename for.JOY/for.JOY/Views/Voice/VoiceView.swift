@@ -8,16 +8,12 @@
 import SwiftUI
 
 struct VoiceView: View {
-    @Environment(\.presentationMode) var presentationMode
     @StateObject var voiceViewModel = VoiceViewModel()
+    @ObservedObject var dataManager: DataManager
 
     let padding = UIScreen.height/844
 
-    //TODO: DataManager로 빼기
     @State private var recording: URL?
-    //    private var selectedImage: UIImage? = UIImage(named: "test")
-
-//    @Binding var recording: URL?
 
     var body: some View {
         NavigationView {
@@ -26,7 +22,7 @@ struct VoiceView: View {
                     .ignoresSafeArea()
 
                 VStack {
-                    if let image = UIImage(named: "test") {
+                    if let image = dataManager.imageData {
                         Image(uiImage: image)
                             .resizable()
                             .aspectRatio(CGSize(width: 3, height: 4), contentMode: .fill)
@@ -47,6 +43,7 @@ struct VoiceView: View {
                     TimerView(viewModel: voiceViewModel, recording: $recording)
                         .frame(width: 57 * padding, height: 94 * padding)
                         .onChange(of: voiceViewModel.recording) { newValue in
+                            dataManager.recording = newValue
                             recording = newValue
                         }
                 }
@@ -58,7 +55,7 @@ struct VoiceView: View {
 
     private var backButton: some View {
         Button {
-            presentationMode.wrappedValue.dismiss()
+            PageManger.shared.pageState = .album
         } label: {
             Text("작성 취소")
                 .foregroundColor(Color.joyBlue)
@@ -68,6 +65,6 @@ struct VoiceView: View {
 
 struct VoiceView_Previews: PreviewProvider {
     static var previews: some View {
-        VoiceView()
+        VoiceView(dataManager: DataManager())
     }
 }

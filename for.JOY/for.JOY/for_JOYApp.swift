@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct ForJoy: App {
+    @StateObject var permissionHandler = PermissionHandler()
+
     var body: some Scene {
         WindowGroup {
             MainView()
+                .onAppear {
+                    permissionHandler.requestPermissions()
+                }
         }
     }
 }
