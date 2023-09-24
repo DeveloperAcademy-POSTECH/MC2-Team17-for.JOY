@@ -79,7 +79,7 @@ extension CarouselView {
         Button {
             PageManger.shared.pageState = .album
         } label: {
-            Image(systemName: Images.back)
+            Image(systemName: Images.chevronBack)
                 .foregroundColor(Color.joyBlue)
         }
     }

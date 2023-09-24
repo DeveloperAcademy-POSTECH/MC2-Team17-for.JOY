@@ -2,7 +2,7 @@
 //  InfoView.swift
 //  for.JOY
 //
-//  Created by hyebin on 2023/09/23.
+//  Created by hyebin on 2023/09/24.
 //
 
 import SwiftUI
