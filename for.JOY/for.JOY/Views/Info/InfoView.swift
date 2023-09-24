@@ -14,6 +14,8 @@ struct InfoView: View {
     @State private var title: String = ""
     @State private var date = Date()
     @State private var tag: String?
+    @State private var image: UIImage?
+    @State private var voice: URL?
     @State private var isAddData: Bool = false
     @State private var pushBackButton = false
     @State private var showTagView = false
@@ -68,6 +70,10 @@ struct InfoView: View {
                     InfoTagView(selectTag: $tag, showTagView: $showTagView)
                 }
                 .keyboardAdaptive()
+            }
+            .onAppear {
+                image = dataManager.imageData!
+                voice = dataManager.recording!
             }
         }
     }
@@ -168,8 +174,8 @@ extension InfoView {
 extension InfoView {
     func doneAction() {
         let year = Int(date.toString(dateFormat: "yyyy"))!
-        let image = dataManager.imageData!.jpegData(compressionQuality: 0.8)!.base64EncodedString()
-        let voice = dataManager.recording!.absoluteString
+        let image = image!.jpegData(compressionQuality: 0.8)!.base64EncodedString()
+        let voice = voice!.absoluteString
 
         realmManger.insertMemory(Memory(value: ["title": title, "year": year, "date": date, "tag": tag ?? "없음", "img": image, "voice": voice]))
         saveImage()

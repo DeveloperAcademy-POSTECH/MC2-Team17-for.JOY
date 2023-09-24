@@ -32,9 +32,11 @@ struct CarouselView: View {
                 }
             }
             .onAppear {
-                currentId = dataManager.selectedId!
-                let year = dataManager.selectedYear!
-                yearlyMemories = realmManager.yearlyMemories[year]!
+                DispatchQueue.main.async {
+                    currentId = dataManager.selectedId!
+                    let year = dataManager.selectedYear!
+                    yearlyMemories = realmManager.yearlyMemories[year]!
+                }
             }
             .alert(Texts.deleteAlertCheck, isPresented: $isShowAlert,
                    actions: {
@@ -113,63 +115,62 @@ extension CarouselView {
     }
     @ViewBuilder
     func carouselMainView() -> some View {
-            TabView(selection: $currentId) {
-                ForEach(yearlyMemories, id: \.id) { memory in
-                    if !memory.isInvalidated {
-                        VStack(spacing: 7) {
-                            Image(uiImage: UIImage(data: Data(base64Encoded: memory.img)!) ?? UIImage(named: Images.emptyMemory)!)
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: imageWidth, height: imageWidth / 3 * 4)
-                                .clipped()
-                                .cornerRadius(10)
-                                .shadow(radius: 3)
-                                .padding(17)
-                            HStack(spacing: 0) {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(memory.title)
-                                        .font(Font.body1Kor)
-                                        .foregroundColor(Color.joyBlack)
-                                        .multilineTextAlignment(.leading)
-                                        .lineLimit(2)
-                                    Text(memory.date.toString(dateFormat: "yyyy.MM.dd"))
-                                        .font(Font.body2)
-                                        .foregroundColor(Color.joyGrey200)
-                                }
-                                .padding(.leading, 27)
-                                Spacer()
-                                Button {
-                                    let url = URL(string: memory.voice)!
-                                    print(url)
-                                    if audioPlayerManager.isPlaying && audioPlayerManager.audioPlayer?.url == url {
-                                        audioPlayerManager.isPaused ? audioPlayerManager.resumePlaying() : audioPlayerManager.pausePlaying()
-                                    } else {
-                                        audioPlayerManager.startPlaying(recordingURL: url)
-                                    }
-                                } label: {
-                                    Circle()
-                                        .frame(width: 50)
-                                        .foregroundColor(audioPlayerManager.isPlaying && !audioPlayerManager.isPaused ? Color.joyYellow : Color.joyGrey100)
-                                        .overlay {
-                                            Image(systemName: audioPlayerManager.isPlaying && !audioPlayerManager.isPaused ? Images.pause : Images.play)
-                                                .foregroundColor(audioPlayerManager.isPlaying ? Color.joyWhite : Color.joyBlue)
-                                        }
-                                }
-                                .padding(.trailing, 20)
+        TabView(selection: $currentId) {
+            ForEach(yearlyMemories, id: \.id) { memory in
+                if !memory.isInvalidated {
+                    VStack(spacing: 7) {
+                        Image(uiImage: UIImage(data: Data(base64Encoded: memory.img)!) ?? UIImage(named: Images.emptyMemory)!)
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: imageWidth, height: imageWidth / 3 * 4)
+                            .clipped()
+                            .cornerRadius(10)
+                            .shadow(radius: 3)
+                            .padding(17)
+                        HStack(spacing: 0) {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(memory.title)
+                                    .font(Font.body1Kor)
+                                    .foregroundColor(Color.joyBlack)
+                                    .multilineTextAlignment(.leading)
+                                    .lineLimit(2)
+                                Text(memory.date.toString(dateFormat: "yyyy.MM.dd"))
+                                    .font(Font.body2)
+                                    .foregroundColor(Color.joyGrey200)
                             }
+                            .padding(.leading, 27)
+                            Spacer()
+                            Button {
+                                let url = URL(string: memory.voice)!
+                                if audioPlayerManager.isPlaying && audioPlayerManager.audioPlayer?.url == url {
+                                    audioPlayerManager.isPaused ? audioPlayerManager.resumePlaying() : audioPlayerManager.pausePlaying()
+                                } else {
+                                    audioPlayerManager.startPlaying(recordingURL: url)
+                                }
+                            } label: {
+                                Circle()
+                                    .frame(width: 50)
+                                    .foregroundColor(audioPlayerManager.isPlaying && !audioPlayerManager.isPaused ? Color.joyYellow : Color.joyGrey100)
+                                    .overlay {
+                                        Image(systemName: audioPlayerManager.isPlaying && !audioPlayerManager.isPaused ? Images.pause : Images.play)
+                                            .foregroundColor(audioPlayerManager.isPlaying ? Color.joyWhite : Color.joyBlue)
+                                    }
+                            }
+                            .padding(.trailing, 20)
                         }
-                        .fullScreenCover(isPresented: $isShowEditSheet) {
-                            EditInfoView(realmManager: realmManager, selectedData: memory)
-                        }
-                        .tag(memory.id)
-                        .padding(.bottom, 21)
-                        .frame(width: cardWidth, height: cardHeight)
-                        .background(Color.joyWhite)
-                        .cornerRadius(20)
-                        .shadow(radius: 4)
                     }
+                    .fullScreenCover(isPresented: $isShowEditSheet) {
+                        EditInfoView(realmManager: realmManager, selectedData: memory)
+                    }
+                    .tag(memory.id)
+                    .padding(.bottom, 21)
+                    .frame(width: cardWidth, height: cardHeight)
+                    .background(Color.joyWhite)
+                    .cornerRadius(20)
+                    .shadow(radius: 4)
                 }
             }
-            .tabViewStyle(.page(indexDisplayMode: .never))
+        }
+        .tabViewStyle(.page(indexDisplayMode: .never))
     }
     @ViewBuilder
     func pageNumbering() -> some View {
