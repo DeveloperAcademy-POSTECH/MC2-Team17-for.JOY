@@ -17,6 +17,12 @@ class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
 extension AudioPlayerManager {
     func startPlaying(recordingURL: URL) {
         do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("[Audio/Error] Failed to set active")
+        }
+        do {
             audioPlayer = try AVAudioPlayer(contentsOf: recordingURL)
             audioPlayer?.delegate = self
             audioPlayer?.play()
