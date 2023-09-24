@@ -18,75 +18,35 @@ struct InfoView: View {
     @State private var showTagView = false
 
     let padding = UIScreen.height/844
-    var topPadding: CGFloat {
-        if #available(iOS 16.0, *) {
-            return 1
-        } else {
-            return -1
-        }
-    }
 
     var body: some View {
         NavigationView {
             ZStack {
                 Color.joyBlack
                     .ignoresSafeArea()
-                    .zIndex(-1)
 
                 VStack {
-                    if let image = dataManager.imageData {
-                        Image(uiImage: image)
-                            .resizable()
-                            .aspectRatio(CGSize(width: 3, height: 4), contentMode: .fill)
-                            .frame(width: 350*padding, height: 466*padding)
-                            .cornerRadius(10)
-                            .clipped()
-                            .padding(.horizontal, 15)
-                            .padding(.top, 30*padding*topPadding)
-                    } else {
-                        Image("test")
-                            .resizable()
-                            .aspectRatio(CGSize(width: 3, height: 4), contentMode: .fill)
-                            .frame(width: 350*padding, height: 466*padding)
-                            .cornerRadius(10)
-                            .clipped()
-                            .padding(.horizontal, 15)
-                            .padding(.top, 30*padding*topPadding)
-                    }
+                    imageView()
 
-                    if #available(iOS 16.0, *) {
-                        List {
-                            titleView()
-                            tagView()
-                            DatePicker(
-                                "날짜",
-                                selection: $date,
-                                displayedComponents: [.date]
-                            )
-                            .tint(Color.joyBlue)
-                            .listRowBackground(Color.joyWhite)
-                        }
-                        .scrollContentBackground(.hidden)
-                        .scrollDisabled(true)
-                    } else {
-                        List {
-                            titleView()
-                            tagView()
-                            DatePicker(
-                                "날짜",
-                                selection: $date,
-                                displayedComponents: [.date]
-                            )
-                            .accentColor(Color.accentColor)
-                            .listRowBackground(Color.joyWhite)
-                        }
-                        .cornerRadius(10)
-                        .padding(.horizontal, 20)
-                        .padding(.top, 30)
-                        .listStyle(.plain)
-                    }
+                    VStack {
+                        titleView()
 
-                    Spacer(minLength: 0)
+                        Divider()
+
+                        tagView()
+                        Divider()
+                        DatePicker(
+                            "날짜",
+                            selection: $date,
+                            displayedComponents: [.date]
+                        )
+                        .tint(Color.joyBlue)
+                    }
+                    .padding()
+                    .background(Color.joyWhite)
+                    .cornerRadius(10)
+                    .padding(.horizontal, 20)
+
                 }
                 .background(Color.joyBlack)
                 .foregroundColor(Color.black)
@@ -106,6 +66,7 @@ struct InfoView: View {
                 .sheet(isPresented: $showTagView) {
                     InfoTagView(selectTag: $tag, showTagView: $showTagView)
                 }
+                .keyboardAdaptive()
             }
         }
     }
@@ -135,6 +96,31 @@ struct InfoView: View {
 
 extension InfoView {
     @ViewBuilder
+    func imageView() -> some View {
+        if let image = dataManager.imageData {
+            Image(uiImage: image)
+                .resizable()
+                .aspectRatio(CGSize(width: 3, height: 4), contentMode: .fill)
+                .frame(width: 350*padding, height: 466*padding)
+                .cornerRadius(10)
+                .clipped()
+                .padding(.horizontal, 15)
+                .padding(.top, -30*padding)
+                .padding(.bottom, 30*padding)
+        } else {
+            Image("test")
+                .resizable()
+                .aspectRatio(CGSize(width: 3, height: 4), contentMode: .fill)
+                .frame(width: 350*padding, height: 466*padding)
+                .cornerRadius(10)
+                .clipped()
+                .padding(.horizontal, 15)
+                .padding(.top, -30*padding)
+                .padding(.bottom, 30*padding)
+        }
+    }
+
+    @ViewBuilder
     func titleView() -> some View {
         HStack {
             Text("제목")
@@ -148,7 +134,6 @@ extension InfoView {
                     title = String(newValue.prefix(20))
                 }
         }
-        .listRowBackground(Color.joyWhite)
     }
 
     @ViewBuilder
@@ -176,7 +161,6 @@ extension InfoView {
                 }
             )
         }
-        .listRowBackground(Color.joyWhite)
     }
 }
 
@@ -267,5 +251,50 @@ extension InfoView {
 struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
         InfoView(dataManager: DataManager())
+    }
+}
+
+struct KeyboardAdaptiveModifier: ViewModifier {
+    @State private var keyboardHeight: CGFloat = 0
+
+    func body(content: Content) -> some View {
+        content
+            .padding(.bottom, keyboardHeight)
+            .onAppear(perform: subscribeToKeyboardEvents)
+            .onDisappear(perform: unsubscribeFromKeyboardEvents)
+    }
+
+    private func subscribeToKeyboardEvents() {
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillShowNotification,
+            object: nil,
+            queue: .main
+        ) { notification in
+            if let keyboardSize = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+                keyboardHeight = keyboardSize.height
+            }
+        }
+
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillHideNotification,
+            object: nil,
+            queue: .main
+        ) { _ in
+            keyboardHeight = 0
+        }
+    }
+
+    private func unsubscribeFromKeyboardEvents() {
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
     }
 }

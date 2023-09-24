@@ -21,6 +21,8 @@ struct ImageCropView: View {
     @State private var lastStoredOffset: CGSize = .zero
     @GestureState private var isInteracting: Bool = false
 
+    let padding = UIScreen.height/844
+
     var body: some View {
         NavigationView {
             imageView()
@@ -49,7 +51,8 @@ struct ImageCropView: View {
                                         onCrop(nil, false)
                                     }
                                 } else {
-                                    let img = imageView(true).snapshot()
+                                    let image = imageView(true).offset(y: padding < 1 ? -10 : -24)
+                                    let img = image.snapshot()
                                     onCrop(img, true)
                                 }
 
@@ -183,9 +186,9 @@ extension View {
         let controller = UIHostingController(rootView: self)
         let view = controller.view
 
-        let targetSize = controller.view.intrinsicContentSize
+        let targetSize = CGSize(width: 346, height: 459)
         view?.bounds = CGRect(origin: .zero, size: targetSize)
-        view?.backgroundColor = .white
+        view?.backgroundColor = .clear
 
         let renderer = UIGraphicsImageRenderer(size: targetSize)
 
