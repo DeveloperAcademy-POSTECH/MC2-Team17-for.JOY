@@ -42,6 +42,7 @@
 		0E4B89D82ABEB48400F358CD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E4B89D72ABEB48400F358CD /* Preview Assets.xcassets */; };
 		5B62903F2AC0171C0022E6D6 /* OffsetReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62903E2AC0171C0022E6D6 /* OffsetReader.swift */; };
 		5B6290452AC06FA00022E6D6 /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6290442AC06FA00022E6D6 /* AudioPlayerManager.swift */; };
+		5B6290492AC0920B0022E6D6 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6290482AC0920B0022E6D6 /* UIImage+.swift */; };
 		5B6A3F9D2ABEB81D0040C348 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A3F9C2ABEB81D0040C348 /* Font+.swift */; };
 		5B6A3F9F2ABEB85E0040C348 /* Colors+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A3F9E2ABEB85E0040C348 /* Colors+.swift */; };
 		5B6A3FA12ABEB87A0040C348 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A3FA02ABEB87A0040C348 /* Date+.swift */; };
@@ -93,6 +94,7 @@
 		5B6290442AC06FA00022E6D6 /* AudioPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerManager.swift; sourceTree = "<group>"; };
 		5B6290462AC073DF0022E6D6 /* for-JOY-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "for-JOY-Info.plist"; sourceTree = SOURCE_ROOT; };
 		5B6290472AC0742A0022E6D6 /* for.JOY.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = for.JOY.entitlements; sourceTree = "<group>"; };
+		5B6290482AC0920B0022E6D6 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		5B6A3F9C2ABEB81D0040C348 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		5B6A3F9E2ABEB85E0040C348 /* Colors+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors+.swift"; sourceTree = "<group>"; };
 		5B6A3FA02ABEB87A0040C348 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				5B6A3F9C2ABEB81D0040C348 /* Font+.swift */,
+				5B6290482AC0920B0022E6D6 /* UIImage+.swift */,
 				5B6A3FA02ABEB87A0040C348 /* Date+.swift */,
 				5B6A3F9E2ABEB85E0040C348 /* Colors+.swift */,
 				0E0F314D2ABF22F000A95794 /* UIScreen+.swift */,
@@ -396,6 +399,7 @@
 				0E0F31692ABF38EE00A95794 /* VoiceViewModel.swift in Sources */,
 				5B6A3F9D2ABEB81D0040C348 /* Font+.swift in Sources */,
 				0E0F312C2ABEF90D00A95794 /* MainView.swift in Sources */,
+				5B6290492AC0920B0022E6D6 /* UIImage+.swift in Sources */,
 				0E0F31322ABEFB1C00A95794 /* CarouselView.swift in Sources */,
 				5B6A3F9F2ABEB85E0040C348 /* Colors+.swift in Sources */,
 				0E0F312E2ABEFAD400A95794 /* AlbumView.swift in Sources */,
