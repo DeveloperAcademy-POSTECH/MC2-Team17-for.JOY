@@ -89,7 +89,7 @@ extension GalleryView {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 4.5) {
                 ForEach(yearlyMemories, id: \.self) { memory in
-                    Image(Images.emptyMemory)
+                    Image(uiImage: UIImage(data: Data(base64Encoded: memory.img)!) ?? UIImage(named: Images.emptyMemory)!)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: imageSize, height: imageSize)
