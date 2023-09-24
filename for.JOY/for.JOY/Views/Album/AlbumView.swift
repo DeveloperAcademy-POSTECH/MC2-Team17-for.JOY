@@ -134,12 +134,15 @@ extension AlbumView {
     @ViewBuilder
     func emptyMemoryView() -> some View {
         VStack(spacing: 25) {
+            Spacer()
             Image(Images.emptyMemory)
                 .resizable()
                 .frame(width: emptypMemoryImgSize, height: emptypMemoryImgSize)
             Text(Texts.emptyMemoryDescription)
                 .font(Font.body2Kor)
                 .foregroundColor(Color.joyWhite)
+            Spacer()
+            Spacer()
         }
     }
     @ViewBuilder
