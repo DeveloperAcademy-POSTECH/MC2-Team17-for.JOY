@@ -22,7 +22,7 @@ enum Images {
     static let chevronRight = "chevron.right"
     static let chevronBack  = "chevron.backward"
     static let xButton = "x.circle.fill"
-  
+
     static let edit = "square.and.pencil"
     static let delete = "trash"
     static let play = "play.fill"

@@ -13,6 +13,14 @@ struct VoiceView: View {
 
     let padding = UIScreen.height/844
 
+    var topPadding: CGFloat {
+        if #available(iOS 16.0, *) {
+            return 0
+        } else {
+            return -1
+        }
+    }
+
     @State private var recording: URL?
 
     var body: some View {
@@ -31,6 +39,7 @@ struct VoiceView: View {
                             .cornerRadius(10)
                             .padding(.horizontal, 20)
                             .padding(.bottom, 30)
+                            .padding(.top, 50*padding*topPadding)
                     }
 
                     SoundVisualizer()
