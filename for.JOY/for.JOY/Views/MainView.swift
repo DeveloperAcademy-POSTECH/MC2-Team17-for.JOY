@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var pageManger = PageManger.shared
+    @StateObject var dataManager = DataManager()
 
     var body: some View {
         ZStack {
@@ -17,15 +18,15 @@ struct MainView: View {
 
             switch pageManger.pageState {
             case .album:
-                AlbumView()
+                AlbumView(dataManager: dataManager)
             case .gallery:
                 GalleryView()
             case .carousel:
                 CarouselView()
             case .voice:
-                VoiceView()
+                VoiceView(dataManager: dataManager)
             case .info:
-                InfoView()
+                InfoView(dataManager: dataManager)
             case .addDone:
                 AddDoneView()
             }

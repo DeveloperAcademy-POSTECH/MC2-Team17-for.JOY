@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AlbumView: View {
+    @ObservedObject var dataManager: DataManager
     @StateObject var realmManager = RealmManager.shared
     @State var selectedTag = Texts.allTags
     @State var isAllSelected = true
@@ -23,7 +24,7 @@ struct AlbumView: View {
                 albumMainView()
                 VStack {
                     Spacer()
-                    PhotoSelectButton()
+                    PhotoSelectButton(dataManager: dataManager)
                 }
             }
             .edgesIgnoringSafeArea([.bottom])
@@ -172,6 +173,6 @@ extension AlbumView {
 
 struct AlbumView_Previews: PreviewProvider {
     static var previews: some View {
-        AlbumView()
+        AlbumView(dataManager: DataManager())
     }
 }

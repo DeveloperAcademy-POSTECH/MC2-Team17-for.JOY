@@ -30,6 +30,9 @@
 		0E3C0E5F2ABF6F73008DF2BD /* AddDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3C0E5E2ABF6F73008DF2BD /* AddDoneView.swift */; };
 		0E3C0E612ABF6FD6008DF2BD /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3C0E602ABF6FD6008DF2BD /* LottieView.swift */; };
 		0E3C0E642ABF7019008DF2BD /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0E3C0E632ABF7019008DF2BD /* Lottie */; };
+		0E3C0E672ABF79E6008DF2BD /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3C0E662ABF79E6008DF2BD /* DataManager.swift */; };
+		0E3C0E6B2ABF7B5E008DF2BD /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3C0E6A2ABF7B5E008DF2BD /* Info.swift */; };
+		0E3C0E732ABFEE15008DF2BD /* PermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3C0E722ABFEE15008DF2BD /* PermissionHandler.swift */; };
 		0E4B89D12ABEB48200F358CD /* for_JOYApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4B89D02ABEB48200F358CD /* for_JOYApp.swift */; };
 		0E4B89D32ABEB48200F358CD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4B89D22ABEB48200F358CD /* ContentView.swift */; };
 		0E4B89D52ABEB48400F358CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E4B89D42ABEB48400F358CD /* Assets.xcassets */; };
@@ -70,6 +73,9 @@
 		0E3C0E5C2ABF5CFE008DF2BD /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		0E3C0E5E2ABF6F73008DF2BD /* AddDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoneView.swift; sourceTree = "<group>"; };
 		0E3C0E602ABF6FD6008DF2BD /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		0E3C0E662ABF79E6008DF2BD /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		0E3C0E6A2ABF7B5E008DF2BD /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
+		0E3C0E722ABFEE15008DF2BD /* PermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionHandler.swift; sourceTree = "<group>"; };
 		0E4B89CD2ABEB48200F358CD /* for.JOY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = for.JOY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E4B89D02ABEB48200F358CD /* for_JOYApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = for_JOYApp.swift; sourceTree = "<group>"; };
 		0E4B89D22ABEB48200F358CD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -164,6 +170,19 @@
 			path = Info;
 			sourceTree = "<group>";
 		};
+		0E3C0E652ABF79BD008DF2BD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0E3C0E5C2ABF5CFE008DF2BD /* Tag.swift */,
+				0E0F31512ABF231400A95794 /* Texts.swift */,
+				0E0F314F2ABF230600A95794 /* Images.swift */,
+				0E0F31292ABEF6F400A95794 /* PageManager.swift */,
+				0E3C0E662ABF79E6008DF2BD /* DataManager.swift */,
+				0E3C0E6A2ABF7B5E008DF2BD /* Info.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		0E4B89C42ABEB48100F358CD = {
 			isa = PBXGroup;
 			children = (
@@ -189,11 +208,9 @@
 				5B6A3FAA2ABEBACF0040C348 /* Resource */,
 				5B6A3FA22ABEB9330040C348 /* Extensions */,
 				0E4B89D62ABEB48400F358CD /* Preview Content */,
-				0E0F31292ABEF6F400A95794 /* PageManager.swift */,
+				0E3C0E652ABF79BD008DF2BD /* Model */,
 				0E0F31372ABEFB6B00A95794 /* Views */,
-				0E0F314F2ABF230600A95794 /* Images.swift */,
-				0E0F31512ABF231400A95794 /* Texts.swift */,
-				0E3C0E5C2ABF5CFE008DF2BD /* Tag.swift */,
+				0E3C0E722ABFEE15008DF2BD /* PermissionHandler.swift */,
 			);
 			path = for.JOY;
 			sourceTree = "<group>";
@@ -352,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E0F31722ABF3DCE00A95794 /* BarView.swift in Sources */,
+				0E3C0E732ABFEE15008DF2BD /* PermissionHandler.swift in Sources */,
 				0E0F316B2ABF390500A95794 /* TimerView.swift in Sources */,
 				0E0F315A2ABF236900A95794 /* PhotoSelectButton.swift in Sources */,
 				0E0F31692ABF38EE00A95794 /* VoiceViewModel.swift in Sources */,
@@ -368,6 +386,8 @@
 				0E4B89D32ABEB48200F358CD /* ContentView.swift in Sources */,
 				0E0F314E2ABF22F000A95794 /* UIScreen+.swift in Sources */,
 				0E4B89D12ABEB48200F358CD /* for_JOYApp.swift in Sources */,
+				0E3C0E6B2ABF7B5E008DF2BD /* Info.swift in Sources */,
+				0E3C0E672ABF79E6008DF2BD /* DataManager.swift in Sources */,
 				0E3C0E612ABF6FD6008DF2BD /* LottieView.swift in Sources */,
 				0E0F31702ABF3DB700A95794 /* MicrophoneMonitor.swift in Sources */,
 				5B6A3FB62ABEFE150040C348 /* Memory.swift in Sources */,
@@ -514,10 +534,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"for.JOY/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HQS8MXQ7B5;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"forJoy\"가 게시글에 사진을 촬영하여 등록하는 기능 사용을 위해 카메라에 접근하도록 허용합니다.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "\"forJoy\"가 음성을 녹음하여 게시글에 오디오를 첨부하는 기능 사용을 위해 마이크에 접근하도록 허용합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"forJoy\"가 게시글에 사진을 첨부하는 기능 사용을 위해 사진 라이브러리에 접근하도록 허용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -544,10 +567,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"for.JOY/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HQS8MXQ7B5;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"forJoy\"가 게시글에 사진을 촬영하여 등록하는 기능 사용을 위해 카메라에 접근하도록 허용합니다.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "\"forJoy\"가 음성을 녹음하여 게시글에 오디오를 첨부하는 기능 사용을 위해 마이크에 접근하도록 허용합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"forJoy\"가 게시글에 사진을 첨부하는 기능 사용을 위해 사진 라이브러리에 접근하도록 허용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -9,7 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct ImageCropView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
 
     var image: UIImage?
     @Binding var showCropView: Bool
@@ -33,13 +33,15 @@ struct ImageCropView: View {
                     ToolbarItemGroup(placement: .bottomBar) {
                         HStack {
                             Button("취소") {
-                                presentationMode.wrappedValue.dismiss()
+                                dismiss()
                             }
 
                             Spacer(minLength: 0)
 
                             Button("선택") {
-                                renderImage()
+                                let img = imageView(true).snapshot()
+                                onCrop(img, true)
+                                showCropView = false
                             }
                         }
                         .foregroundColor(.white)
@@ -72,43 +74,43 @@ struct ImageCropView: View {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-//                    .overlay {
-//                        GeometryReader { proxy in
-//                            let rect = proxy.frame(in: .named("CROPVIEW"))
-//
-//                            Color.clear
-//                                .onChange(of: isInteracting) { newValue in
-//                                    withAnimation(.easeInOut(duration: 0.2)) {
-//                                        if rect.minX > 0 {
-//                                            offset.width = offset.width - rect.minX
-//                                        }
-//                                        if rect.minY > 0 {
-//                                            offset.height = offset.height - rect.minY
-//                                        }
-//                                        if rect.maxX < size.width {
-//                                            offset.width = rect.minX - offset.width
-//                                        }
-//                                        if rect.maxY < size.height {
-//                                            offset.height = rect.minY - offset.height
-//                                        }
-//                                    }
-//
-//                                    if !newValue {
-//                                        lastStoredOffset = offset
-//                                    }
-//                                }
-//                        }
-//                    }
+                    .overlay {
+                        GeometryReader { proxy in
+                            let rect = proxy.frame(in: .named("CROPVIEW"))
+
+                            Color.clear
+                                .onChange(of: isInteracting) { newValue in
+                                    withAnimation(.easeInOut(duration: 0.2)) {
+                                        if rect.minX > 0 {
+                                            offset.width -= rect.minX
+                                        }
+                                        if rect.minY > 0 {
+                                            offset.height -= rect.minY
+                                        }
+                                        if rect.maxX < size.width {
+                                            offset.width = rect.minX - offset.width
+                                        }
+                                        if rect.maxY < size.height {
+                                            offset.height = rect.minY - offset.height
+                                        }
+                                    }
+
+                                    if !newValue {
+                                        lastStoredOffset = offset
+                                    }
+                                }
+                        }
+                    }
                     .frame(width: size.width, height: size.height)
             }
         }
         .scaleEffect(scale)
         .offset(offset)
-//        .overlay {
-//            if !hideGrids {
-//                Grids()
-//            }
-//        }
+        .overlay {
+            if !hideGrids {
+                grids()
+            }
+        }
         .coordinateSpace(name: "CROPVIEW")
         .gesture(
             DragGesture()
@@ -175,6 +177,23 @@ struct ImageCropView_Previews: PreviewProvider {
     static var previews: some View {
         ImageCropView(showCropView: .constant(true)) { _, _ in
 
+        }
+    }
+}
+
+extension View {
+    func snapshot() -> UIImage {
+        let controller = UIHostingController(rootView: self)
+        let view = controller.view
+
+        let targetSize = CGSize(width: 346, height: 459)
+        view?.bounds = CGRect(origin: .zero, size: targetSize)
+        view?.backgroundColor = .clear
+
+        let renderer = UIGraphicsImageRenderer(size: targetSize)
+
+        return renderer.image { _ in
+            view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
         }
     }
 }

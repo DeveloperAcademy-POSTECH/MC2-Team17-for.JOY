@@ -9,14 +9,13 @@ import SwiftUI
 import Photos
 
 struct InfoView: View {
+    @ObservedObject var dataManager: DataManager
     @State private var title: String = ""
     @State private var date = Date()
     @State private var tag: String?
     @State private var isAddData: Bool = false
     @State private var pushBackButton = false
     @State private var showTagView = false
-
-    @State private var selectedImage: UIImage? = UIImage(named: "test")
 
     let padding = UIScreen.height/844
 
@@ -27,8 +26,8 @@ struct InfoView: View {
                     .ignoresSafeArea()
 
                 VStack {
-                    if selectedImage != nil {
-                        Image(uiImage: selectedImage!)
+                    if let image = dataManager.imageData {
+                        Image(uiImage: image)
                             .resizable()
                             .aspectRatio(CGSize(width: 3, height: 4), contentMode: .fill)
                             .frame(width: 350*padding, height: 466*padding)
@@ -75,7 +74,9 @@ struct InfoView: View {
 
                 .alert("다시 녹음하시겠습니까?", isPresented: $pushBackButton, actions: {
                     Button("취소", role: .cancel) { }
-                    Button("다시 녹음", role: .destructive) { }
+                    Button("다시 녹음", role: .destructive) {
+                        PageManger.shared.pageState = .voice
+                    }
                 }, message: {
                     Text("재녹음 시 이전에 녹음된 정보는 삭제됩니다.")
                 })
@@ -98,11 +99,10 @@ struct InfoView: View {
 
     private var doneButton: some View {
         Button {
-            PageManger.shared.pageState = .addDone
-//            if !isAddData && title != "" {
-//                doneAction()
-//                isAddData = true
-//            }
+            if !isAddData && title != "" {
+                doneAction()
+                isAddData = true
+            }
         } label: {
             Text("완료")
                 .foregroundColor(title == "" ? .gray : Color.joyBlue)
@@ -160,17 +160,24 @@ extension InfoView {
 
 extension InfoView {
     func doneAction() {
-//        let year = Int(date.toString(dateFormat: "yyyy"))!
+        let year = Int(date.toString(dateFormat: "yyyy"))!
 
         //TODO: ADD DAta
 //        saveImage()
+
+        dataManager.info = Info(
+            title: title,
+            year: Int16(year),
+            date: date,
+            tag: tag ?? "없음"
+        )
         PageManger.shared.pageState = .addDone
     }
 
     func saveImage() {
         let albumName = "forJoy"
 
-        guard let image = selectedImage,
+        guard let image = dataManager.imageData,
               let data = image.jpegData(compressionQuality: 1) else {
             return
         }
@@ -218,6 +225,7 @@ extension InfoView {
 
     func saveImageToAlbum(imageData: Data, album: PHAssetCollection) {
         var placeholder: PHObjectPlaceholder?
+
         PHPhotoLibrary.shared().performChanges({
             let request = PHAssetChangeRequest.creationRequestForAsset(from: UIImage(data: imageData)!)
             let assetPlaceholder = request.placeholderForCreatedAsset
@@ -236,6 +244,6 @@ extension InfoView {
 
 struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoView()
+        InfoView(dataManager: DataManager())
     }
 }

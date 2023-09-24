@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PhotoSelectButton: View {
+    @ObservedObject var dataManager: DataManager
     @State private var isShowActionSheet = false
     @State private var isShowingCameraPicker = false
     @State private var isShowingPhotoLibraryPicker = false
@@ -78,6 +79,7 @@ struct PhotoSelectButton: View {
             isShowingCropView.toggle()
         }
         .onChange(of: croppedImage) { _ in
+            dataManager.imageData = croppedImage
             DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
                 PageManger.shared.pageState = .voice
             }
@@ -111,6 +113,6 @@ extension PhotoSelectButton {
 
 struct PhotoSelectButton_Previews: PreviewProvider {
     static var previews: some View {
-        PhotoSelectButton()
+        PhotoSelectButton(dataManager: DataManager())
     }
 }
