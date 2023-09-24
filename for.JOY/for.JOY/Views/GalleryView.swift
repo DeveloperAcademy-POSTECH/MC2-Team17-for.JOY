@@ -9,10 +9,9 @@ import SwiftUI
 
 struct GalleryView: View {
     @StateObject var realmManager = RealmManager.shared
+    @ObservedObject var dataManager: DataManager
     @State private var isNewest = true
     @State private var yearlyMemories: [Memory] = []
-    let year = 2023
-    let tag = "없음"
     var columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 4.5), count: 3)
     private let imageSize = (UIScreen.width - 9) / 3
     var body: some View {
@@ -21,7 +20,7 @@ struct GalleryView: View {
                 Color.joyBlack
                     .ignoresSafeArea()
                 VStack {
-                    Text(setAlbumName(year, tag))
+                    Text(setAlbumName())
                         .font(Font.largeTitleKor)
                         .foregroundColor(Color.joyWhite)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -31,14 +30,17 @@ struct GalleryView: View {
                 }
             }
             .onAppear {
+                let year = dataManager.selectedYear!
                 yearlyMemories = realmManager.yearlyMemories[year] ?? []
             }
             .navigationBarItems(leading: backButton())
             .navigationBarItems(trailing: sortButton())
         }
     }
-    func setAlbumName(_ year: Int, _ tag: String) -> String {
-        return String("\(tag) \(year)")
+    func setAlbumName() -> String {
+        let year = dataManager.selectedYear!
+        let tag = dataManager.selectedTag
+        return String("\(tag ?? "") \(year)")
     }
 }
 
@@ -96,6 +98,7 @@ extension GalleryView {
                         .clipped()
                         .cornerRadius(10)
                         .onTapGesture {
+                            dataManager.selectedId = memory.id
                             PageManger.shared.pageState = .carousel
                         }
                 }
@@ -104,8 +107,8 @@ extension GalleryView {
     }
 }
 
-struct GalleryView_Previews: PreviewProvider {
-    static var previews: some View {
-        GalleryView()
-    }
-}
+//struct GalleryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GalleryView()
+//    }
+//}

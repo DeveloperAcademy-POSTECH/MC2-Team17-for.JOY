@@ -20,9 +20,9 @@ struct MainView: View {
             case .album:
                 AlbumView(dataManager: dataManager)
             case .gallery:
-                GalleryView()
+                GalleryView(dataManager: dataManager)
             case .carousel:
-                CarouselView()
+                CarouselView(dataManager: dataManager)
             case .voice:
                 VoiceView(dataManager: dataManager)
             case .info:
