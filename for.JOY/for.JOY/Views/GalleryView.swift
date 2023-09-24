@@ -31,7 +31,7 @@ struct GalleryView: View {
                 }
             }
             .onAppear {
-                yearlyMemories = realmManager.yearlyMemories[year]!
+                yearlyMemories = realmManager.yearlyMemories[year] ?? []
             }
             .navigationBarItems(leading: backButton())
             .navigationBarItems(trailing: sortButton())

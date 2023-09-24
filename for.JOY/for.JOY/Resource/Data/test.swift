@@ -11,10 +11,10 @@ struct Test: View {
     @StateObject var realmManager = RealmManager.shared
     var body: some View {
         VStack {
-            Text("\(realmManager.distinctYears[0])")
-            Text("\(realmManager.distinctTags[0])")
+//            Text("\(realmManager.distinctYears[0])")
+//            Text("\(realmManager.distinctTags[0])")
             List {
-                ForEach(realmManager.memories, id: \.id) { memory in
+                ForEach(realmManager.yearlyMemories[2023] ?? [], id: \.id) { memory in
                     if !memory.isInvalidated {
                         VStack {
                             Text("\(memory.id)")
@@ -29,7 +29,7 @@ struct Test: View {
             }
             Spacer()
             Button {
-                realmManager.insertMemory(Memory(value: ["title": "test", "year": 2022, "date": Date(), "tag": "있음", "img": "EmptyMemory", "voice": "none"] as [String : Any]))
+                realmManager.insertMemory(Memory(value: ["title": "test", "year": 2023, "date": Date(), "tag": "있음", "img": "EmptyMemory", "voice": "none"] as [String : Any]))
             } label: {
                 Text("Add Memory")
                     .foregroundColor(.white)
