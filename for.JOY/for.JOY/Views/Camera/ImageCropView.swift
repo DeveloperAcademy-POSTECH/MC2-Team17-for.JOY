@@ -22,6 +22,7 @@ struct ImageCropView: View {
     @GestureState private var isInteracting: Bool = false
 
     let padding = UIScreen.height/844
+    let yOffset = -(UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0) / 2
 
     var body: some View {
         NavigationView {
@@ -41,7 +42,7 @@ struct ImageCropView: View {
                             Spacer(minLength: 0)
 
                             Button("선택") {
-                                let image = imageView(true).offset(y: padding < 1 ? -10 : -24)
+                                let image = imageView(true).offset(y: yOffset)
                                 let img = image.snapshot()
                                 onCrop(img, true)
                                 showCropView = false
