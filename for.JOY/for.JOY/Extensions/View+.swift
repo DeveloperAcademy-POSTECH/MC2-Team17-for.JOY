@@ -18,7 +18,7 @@ extension View {
 
         let targetSize = CGSize(width: 350, height: 466)
         view?.bounds = CGRect(origin: .zero, size: targetSize)
-        view?.backgroundColor = .white
+        view?.backgroundColor = .clear
 
         let renderer = UIGraphicsImageRenderer(size: targetSize)
 
