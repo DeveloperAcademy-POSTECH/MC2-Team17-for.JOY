@@ -159,6 +159,11 @@ extension CarouselView {
                             .padding(.trailing, 20)
                         }
                     }
+                    .onAppear {
+                        audioPlayerManager.isPlaying = false
+                        audioPlayerManager.isPaused = false
+                        audioPlayerManager.audioPlayer?.stop()
+                    }
                     .fullScreenCover(isPresented: $isShowEditSheet) {
                         EditInfoView(realmManager: realmManager, selectedData: memory)
                     }
