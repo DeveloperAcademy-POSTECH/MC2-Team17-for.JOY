@@ -81,7 +81,7 @@ extension CarouselView {
     @ViewBuilder
     func backButton() -> some View {
         Button {
-            PageManger.shared.pageState = .album
+            PageManger.shared.pageState = .gallery
         } label: {
             Image(systemName: Images.chevronBack)
                 .foregroundColor(Color.joyBlue)
