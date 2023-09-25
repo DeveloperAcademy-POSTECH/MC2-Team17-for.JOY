@@ -23,13 +23,6 @@ class MicrophoneMonitor: ObservableObject {
         self.svCurrentSample = 0
 
         let audioSession = AVAudioSession.sharedInstance()
-        if audioSession.recordPermission != .granted {
-            audioSession.requestRecordPermission { (isGranted) in
-                if !isGranted {
-                    fatalError("You must allow audio recording for this demo to work")
-                }
-            }
-        }
 
         let url = URL(fileURLWithPath: "/dev/null", isDirectory: true)
         let recorderSettings: [String: Any] = [

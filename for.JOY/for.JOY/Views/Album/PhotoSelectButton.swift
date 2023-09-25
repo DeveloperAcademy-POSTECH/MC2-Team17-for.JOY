@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PhotoSelectButton: View {
+    @StateObject var permissionHandler = PermissionHandler()
+
     @ObservedObject var dataManager: DataManager
     @State private var isShowActionSheet = false
     @State private var isShowingCameraPicker = false
@@ -16,6 +18,10 @@ struct PhotoSelectButton: View {
 
     @State private var selectedImage: UIImage?
     @State private var croppedImage: UIImage?
+
+    @State private var cameraPermission = false
+    @State private var photoLibraryPermission = false
+    @State private var showPermissionAlert = false
 
     var body: some View {
         VStack {
@@ -28,10 +34,24 @@ struct PhotoSelectButton: View {
                             title: Text(Texts.cameraActionSheetTitle),
                                 buttons: [
                                     .default(Text(Texts.cameraActionSheetCamera)) {
-                                        isShowingCameraPicker = true
+                                        permissionHandler.checkCameraPermission { granted in
+                                            if granted {
+                                                isShowingCameraPicker = true
+                                            } else {
+                                                cameraPermission = true
+                                                showPermissionAlert = true
+                                            }
+                                        }
                                     },
                                     .default(Text(Texts.cameraActionSheetLibrary)) {
-                                        isShowingPhotoLibraryPicker = true
+                                        permissionHandler.checkPhotoLibraryPermission { granted in
+                                            if granted {
+                                                isShowingPhotoLibraryPicker = true
+                                            } else {
+                                                photoLibraryPermission = true
+                                                showPermissionAlert = true
+                                            }
+                                        }
                                     },
                                     .cancel()
                                 ]
@@ -67,6 +87,19 @@ struct PhotoSelectButton: View {
                                 self.croppedImage = croppedImage
                             }
                         }
+                    }
+                    .alert(isPresented: $showPermissionAlert) {
+                        let title = cameraPermission ? "카메라 권한이 거부되었습니다" : "포토 라이브러리 권한이 거부되었습니다"
+                        let message = cameraPermission ? "설정에서 카메라 권한을 허용해 주세요" : "설정에서 포토 라이브러리 권한을 허용해 주세요"
+
+                        return Alert(
+                            title: Text(title),
+                            message: Text(message),
+                            dismissButton: .default(Text("OK")) {
+                                cameraPermission = false
+                                photoLibraryPermission = false
+                            }
+                        )
                     }
             }
 

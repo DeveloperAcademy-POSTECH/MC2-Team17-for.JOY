@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct VoiceView: View {
+    @StateObject var permissionHandler = PermissionHandler()
     @StateObject var voiceViewModel = VoiceViewModel()
     @ObservedObject var dataManager: DataManager
+
+    @State private var recording: URL?
+    @State private var showPermissionAlert = false
 
     let padding = UIScreen.height/844
 
@@ -20,8 +24,6 @@ struct VoiceView: View {
             return -1
         }
     }
-
-    @State private var recording: URL?
 
     var body: some View {
         NavigationView {
@@ -56,6 +58,26 @@ struct VoiceView: View {
                             dataManager.recording = newValue
                             recording = newValue
                         }
+                }
+                .onAppear {
+                    permissionHandler.checkAudioPermission { granted in
+                        if !granted {
+                            showPermissionAlert = true
+                        }
+                    }
+                }
+                .alert(isPresented: $showPermissionAlert) {
+                    let title = "마이크 권한이 거부되었습니다"
+                    let message = "설정에서 마이크 권한을 허용해 주세요"
+
+                    return Alert(
+                        title: Text(title),
+                        message: Text(message),
+                        dismissButton: .default(Text("OK")) {
+                            showPermissionAlert = false
+                            PageManger.shared.pageState = .album
+                        }
+                    )
                 }
             }
             .navigationBarBackButtonHidden(true)

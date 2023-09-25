@@ -34,13 +34,13 @@ struct EditInfoView: View {
                         Divider()
 
                         tagView()
-                        Divider()
-                        DatePicker(
-                            "날짜",
-                            selection: $date,
-                            displayedComponents: [.date]
-                        )
-                        .tint(Color.joyBlue)
+//                        Divider()
+//                        DatePicker(
+//                            "날짜",
+//                            selection: $date,
+//                            displayedComponents: [.date]
+//                        )
+//                        .tint(Color.joyBlue)
                     }
                     .padding()
                     .background(Color.joyWhite)
