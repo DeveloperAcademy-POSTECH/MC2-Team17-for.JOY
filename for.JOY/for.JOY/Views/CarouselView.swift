@@ -26,8 +26,12 @@ struct CarouselView: View {
                 Color.joyBlack
                     .ignoresSafeArea()
                 VStack {
+                    Spacer()
+                    Spacer()
                     carouselMainView()
+                    Spacer()
                     pageNumbering()
+                    Spacer()
                     Spacer()
                 }
             }
@@ -118,48 +122,8 @@ extension CarouselView {
         TabView(selection: $currentId) {
             ForEach(yearlyMemories, id: \.id) { memory in
                 if !memory.isInvalidated {
-                    VStack(spacing: 7) {
-                        Image(uiImage: UIImage(data: Data(base64Encoded: memory.img)!) ?? UIImage(named: Images.emptyMemory)!)
-                            .resizable()
-                            .frame(width: 350, height: 466)
-                            .frame(width: imageWidth, height: imageWidth / 3 * 4)
-                            .clipped()
-                            .cornerRadius(10)
-                            .shadow(radius: 3)
-                            .padding(17)
-                        HStack(spacing: 0) {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(memory.title)
-                                    .font(Font.body1Kor)
-                                    .foregroundColor(Color.joyBlack)
-                                    .multilineTextAlignment(.leading)
-                                    .lineLimit(2)
-                                Text(memory.date.toString(dateFormat: "yyyy.MM.dd"))
-                                    .font(Font.body2)
-                                    .foregroundColor(Color.joyGrey200)
-                            }
-                            .padding(.leading, 27)
-                            Spacer()
-                            Button {
-                                let url = URL(string: memory.voice)!
-                                if audioPlayerManager.isPlaying && audioPlayerManager.audioPlayer?.url == url {
-                                    audioPlayerManager.isPaused ? audioPlayerManager.resumePlaying() : audioPlayerManager.pausePlaying()
-                                } else {
-                                    audioPlayerManager.startPlaying(recordingURL: url)
-                                }
-                            } label: {
-                                Circle()
-                                    .frame(width: 50)
-                                    .foregroundColor(audioPlayerManager.isPlaying && !audioPlayerManager.isPaused ? Color.joyYellow : Color.joyGrey100)
-                                    .overlay {
-                                        Image(systemName: audioPlayerManager.isPlaying && !audioPlayerManager.isPaused ? Images.pause : Images.play)
-                                            .foregroundColor(audioPlayerManager.isPlaying ? Color.joyWhite : Color.joyBlue)
-                                    }
-                            }
-                            .padding(.trailing, 20)
-                        }
-                    }
-                    .onAppear {
+                    tabItem(memory)
+                    .onDisappear {
                         audioPlayerManager.isPlaying = false
                         audioPlayerManager.isPaused = false
                         audioPlayerManager.audioPlayer?.stop()
@@ -176,6 +140,7 @@ extension CarouselView {
                 }
             }
         }
+        .frame(height: cardHeight)
         .tabViewStyle(.page(indexDisplayMode: .never))
     }
     @ViewBuilder
@@ -188,6 +153,55 @@ extension CarouselView {
                     .fill(Color.joyGrey300)
                     .frame(width: 80, height: 30)
             )
+    }
+    @ViewBuilder
+    func tabItem(_ memory: Memory) -> some View {
+        if currentId == memory.id {
+            VStack(spacing: 7) {
+                Image(uiImage: UIImage(data: Data(base64Encoded: memory.img)!) ?? UIImage(named: Images.emptyMemory)!)
+                    .resizable()
+                    .frame(width: 350, height: 466)
+                    .frame(width: imageWidth, height: imageWidth / 3 * 4)
+                    .clipped()
+                    .cornerRadius(10)
+                    .shadow(radius: 3)
+                    .padding(17)
+                HStack(spacing: 0) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(memory.title)
+                            .font(Font.body1Kor)
+                            .foregroundColor(Color.joyBlack)
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(2)
+                        Text(memory.date.toString(dateFormat: "yyyy.MM.dd"))
+                            .font(Font.body2)
+                            .foregroundColor(Color.joyGrey200)
+                    }
+                    .padding(.leading, 27)
+                    Spacer()
+                    Button {
+                        let url = URL(string: memory.voice)!
+                        if audioPlayerManager.isPlaying && audioPlayerManager.audioPlayer?.url == url {
+                            audioPlayerManager.isPaused ? audioPlayerManager.resumePlaying() : audioPlayerManager.pausePlaying()
+                        } else {
+                            audioPlayerManager.startPlaying(recordingURL: url)
+                        }
+                    } label: {
+                        Circle()
+                            .frame(width: 50)
+                            .foregroundColor(audioPlayerManager.isPlaying && !audioPlayerManager.isPaused ? Color.joyYellow : Color.joyGrey100)
+                            .overlay {
+                                Image(systemName: audioPlayerManager.isPlaying && !audioPlayerManager.isPaused ? Images.pause : Images.play)
+                                    .foregroundColor(audioPlayerManager.isPlaying && !audioPlayerManager.isPaused ? Color.joyWhite : Color.joyBlue)
+                            }
+                    }
+                    .padding(.trailing, 20)
+                }
+            }
+        } else {
+            ProgressView()
+                .tint(Color.joyWhite)
+        }
     }
 }
 
