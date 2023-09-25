@@ -11,14 +11,14 @@ extension View {
     func navigationBarColor(_ backgroundColor: UIColor?) -> some View {
        self.modifier(NavigationBarColorModifier(backgroundColor: backgroundColor))
    }
-    
+
     func snapshot() -> UIImage {
         let controller = UIHostingController(rootView: self)
         let view = controller.view
 
         let targetSize = CGSize(width: 350, height: 466)
         view?.bounds = CGRect(origin: .zero, size: targetSize)
-        view?.backgroundColor = .clear
+        view?.backgroundColor = .white
 
         let renderer = UIGraphicsImageRenderer(size: targetSize)
 

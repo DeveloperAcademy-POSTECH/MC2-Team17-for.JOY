@@ -40,4 +40,22 @@ class PermissionHandler: ObservableObject {
 
     private func checkPermissionsCompleted() {
     }
+
+    func checkCameraPermission(completion: @escaping (Bool) -> Void) {
+        AVCaptureDevice.requestAccess(for: .video) { granted in
+            completion(granted)
+        }
+    }
+
+    func checkPhotoLibraryPermission(completion: @escaping (Bool) -> Void) {
+        PHPhotoLibrary.requestAuthorization { status in
+            completion(status == .authorized)
+        }
+    }
+
+    func checkAudioPermission(completion: @escaping (Bool) -> Void) {
+        AVAudioSession.sharedInstance().requestRecordPermission { granted in
+            completion(granted)
+        }
+    }
 }
