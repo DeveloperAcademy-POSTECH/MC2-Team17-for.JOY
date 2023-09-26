@@ -67,8 +67,8 @@ struct VoiceView: View {
                     }
                 }
                 .alert(isPresented: $showPermissionAlert) {
-                    let title = "마이크 권한이 거부되었습니다."
-                    let message = "설정에서 마이크 권한을 허용해 주세요."
+                    let title = "마이크 권한에 접근할 수 없습니다."
+                    let message = "설정에서 \"마이크\" 권한을 허용해 주세요."
 
                     return Alert(
                         title: Text(title),
