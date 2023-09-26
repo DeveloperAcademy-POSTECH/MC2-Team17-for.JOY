@@ -89,8 +89,8 @@ struct PhotoSelectButton: View {
                         }
                     }
                     .alert(isPresented: $showPermissionAlert) {
-                        let title = cameraPermission ? "카메라 권한이 거부되었습니다" : "포토 라이브러리 권한이 거부되었습니다"
-                        let message = cameraPermission ? "설정에서 카메라 권한을 허용해 주세요" : "설정에서 포토 라이브러리 권한을 허용해 주세요"
+                        let title = cameraPermission ? "카메라 권한이 거부되었습니다." : "사진 권한이 거부되었습니다."
+                        let message = cameraPermission ? "설정에서 카메라 권한을 허용해 주세요." : "설정에서 사진 권한을 허용해 주세요."
 
                         return Alert(
                             title: Text(title),
