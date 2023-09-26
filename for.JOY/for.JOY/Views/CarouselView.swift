@@ -160,7 +160,8 @@ extension CarouselView {
             VStack(spacing: 7) {
                 Image(uiImage: UIImage(data: Data(base64Encoded: memory.img)!) ?? UIImage(named: Images.emptyMemory)!)
                     .resizable()
-                    .frame(width: 350, height: 466)
+                    .aspectRatio(contentMode: .fit)
+//                    .frame(width: 350, height: 466)
                     .frame(width: imageWidth, height: imageWidth / 3 * 4)
                     .clipped()
                     .cornerRadius(10)
