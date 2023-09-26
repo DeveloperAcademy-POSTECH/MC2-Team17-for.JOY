@@ -128,7 +128,7 @@ extension InfoTagView {
     @ViewBuilder
     func addTagView() -> some View {
         HStack {
-            TextField("새로운 태그", text: $newTag)
+            TextField("", text: $newTag, prompt: Text("새로운 태그").foregroundColor(Color.joyGrey200))
                 .onChange(of: newTag) { newValue in
                     newTag = String(newValue.prefix(10))
                 }

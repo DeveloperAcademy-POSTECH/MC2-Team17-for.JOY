@@ -129,7 +129,7 @@ extension InfoView {
 
             Spacer(minLength: 0)
 
-            TextField("제목", text: $title)
+            TextField("", text: $title, prompt: Text("제목").foregroundColor(Color.joyGrey200)) 
                 .font(.system(size: (17.0 - CGFloat(title.count)*0.3)))
                 .multilineTextAlignment(.trailing)
                 .onChange(of: title) { newValue in
